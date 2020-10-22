@@ -6,13 +6,13 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Header from "../../components/Header";
-import PostGrid from "../../components/PostGrid";
-import Main from "../../components/Main";
-import Footer from "../../components/Footer";
-import DetailPost from "../../components/DetailPost";
+import Header from "srcRoot/components/Header";
+import PostGrid from "srcRoot/components/PostGrid";
+import Main from "srcRoot/components/Main";
+import Footer from "srcRoot/components/Footer";
+import DetailPost from "srcRoot/components/DetailPost";
 
-import { translatePostGroupTitle } from "../../utils/utils";
+import { translatePostGroupTitle } from "srcRoot/utils/utils";
 import enhance from "./enhance";
 
 const useStyles = makeStyles((theme) => ({

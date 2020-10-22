@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import { compose, withHandlers, withState, lifecycle } from "recompose";
 
-import UserDataHandler from "../../components/HOC/UserDataHandler";
-import { userDataCRUD } from "../../utils/utils";
+import UserDataHandler from "srcRoot/components/HOC/UserDataHandler";
+import { userDataCRUD } from "srcRoot/utils/utils";
 import {
   asyncGetAllArticle,
   asynGetAudioArticle,

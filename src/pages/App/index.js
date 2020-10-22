@@ -14,7 +14,8 @@ const App = () => {
   return (
     <div>
       <Helmet defaultTitle="HÔM NAY ĐỌC GÌ? | Cá nhân hóa thông tin người dùng cần đọc">
-        <meta name="description" content="HÔM NAY ĐỌC GÌ?" />
+        <meta name="description" content="Tổng hợp bài viết hay trên facebook. Nội dung đa dạng, chuyên sâu." />
+        <meta name="keywords" content="hôm nay đọc gì, homnaydocgi, hom nay doc gi, bài viết facebook hay, blog của tài bùi, đọc gì, doc gi hay" />
       </Helmet>
       <Router>
         <Switch>

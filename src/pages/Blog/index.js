@@ -5,20 +5,21 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import ScalingSquaresSpinner from "@bit/bondz.react-epic-spinners.scaling-squares-spinner";
+import { Chart } from "@bit/primefaces.primereact.chart";
 
-import NotificationDivider from "../../components/NotificationDivider";
+import NotificationDivider from "srcRoot/components/NotificationDivider";
+import Header from "srcRoot/components/Header";
+import DetailPost from "srcRoot/components/DetailPost";
+import Main from "srcRoot/components/Main";
+import Footer from "srcRoot/components/Footer";
+import PostGrid from "srcRoot/components/PostGrid";
+import { AUTHOR_LIST } from "srcRoot/utils/constants";
+
 import TopicOption from "./components/TopicOption";
-import Header from "../../components/Header";
 import MainFeaturedPost from "./PostWrap/MainFeaturedPost";
 import FeaturedPost from "./PostWrap/FeaturedPost";
-import DetailPost from "../../components/DetailPost";
-import Main from "../../components/Main";
-import Footer from "../../components/Footer";
-import PostGrid from "../../components/PostGrid";
 import FeedBack from "./components/FeedBack";
 import AuthorPost from "./PostWrap/AuthorPost";
-import { AUTHOR_LIST } from "../../utils/constants";
-import { Chart } from "@bit/primefaces.primereact.chart";
 import enhance from "./enhance";
 
 const useStyles = makeStyles((theme) => ({
@@ -178,7 +179,7 @@ const Blog = (props) => {
               {!responsiveObj.is_maxWidth_500px && (
                 <AuthorPost
                   type="image"
-                  title="Từ khóa hot"
+                  title="Các khái niệm mới"
                   data={AUTHOR_LIST.image}
                   navigateTime={3000}
                   responsiveObj={responsiveObj}
@@ -258,7 +259,7 @@ const Blog = (props) => {
         {/*-----------------------------------Nhóm thông báo-----------------------------------------------*/}
       </Container>
       {!isLoadingPage && (
-        <Footer description="Tham gia cùng đội/nhóm phát triển sản phẩm - Liên hệ Bùi Ngọc Tài Zalo 0983 053 600" />
+        <Footer description="Tham gia cùng đội phát triển sản phẩm - Liên hệ Bùi Ngọc Tài Zalo 0983 053 600" />
       )}
     </React.Fragment>
   );

@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import { compose, withHandlers, withState, lifecycle } from "recompose";
-import { DEFAULT_TOPIC } from "../../utils/constants";
-import { userDataCRUD } from "../../utils/utils";
-import OpenDetaiPostHandler from "../../components/HOC/OpenDetaiPostHandler";
-import UserDataHandler from "../../components/HOC/UserDataHandler";
-import * as serviceWorker from "../../serviceWorker";
+import { DEFAULT_TOPIC } from "srcRoot/utils/constants";
+import { userDataCRUD } from "srcRoot/utils/utils";
+import OpenDetaiPostHandler from "srcRoot/components/HOC/OpenDetaiPostHandler";
+import UserDataHandler from "srcRoot/components/HOC/UserDataHandler";
+import * as serviceWorker from "srcRoot/serviceWorker";
 import {
   asyncGetMainPosts,
   asyncGetFeaturedPosts,
@@ -103,7 +103,7 @@ export default compose(
           setPostList([...selectedTopics]);
           userDataCRUD({ action: "EDIT", data: savedData });
         })
-        .catch(() => {});
+        .catch(() => { });
     },
     onSubmitFeedBack: (props) => (feedback) => {
       const {
@@ -119,8 +119,8 @@ export default compose(
           id_msg_user: "",
           message: `${userName}: ${feedback}`,
         })
-          .then(({ message }) => {})
-          .catch(() => {});
+          .then(({ message }) => { })
+          .catch(() => { });
       } else {
         setScrollCount(0);
       }
@@ -221,7 +221,7 @@ export default compose(
           .then(() => {
             getGetAllTopicDispatch();
           })
-          .catch(() => {});
+          .catch(() => { });
       } else {
         setTopic([...topic]);
 

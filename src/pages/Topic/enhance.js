@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import { compose, withHandlers, withState, lifecycle } from "recompose";
-import OpenDetaiPostHandler from "../../components/HOC/OpenDetaiPostHandler";
-import UserDataHandler from "../../components/HOC/UserDataHandler";
+import OpenDetaiPostHandler from "srcRoot/components/HOC/OpenDetaiPostHandler";
+import UserDataHandler from "srcRoot/components/HOC/UserDataHandler";
 
-import { userDataCRUD } from "../../utils/utils";
+import { userDataCRUD } from "srcRoot/utils/utils";
 import {
   asyncGetAllPost,
   asyncSearchArticles,

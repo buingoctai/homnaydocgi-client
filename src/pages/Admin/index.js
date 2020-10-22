@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 
 import AddingForm from "./components/AddingForm";
 import DataTable from "./components/DataTable";
-import CopyRight from "../../components/CoppyRight";
+import CopyRight from "srcRoot/components/CoppyRight";
 import enhance from "./enhance";
 
 const useStyles = makeStyles((theme) => ({

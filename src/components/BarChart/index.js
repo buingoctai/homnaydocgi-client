@@ -1,13 +1,13 @@
 import React from "react";
-import {
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  BarChart,
-  Bar,
-} from "recharts";
+// import {
+//   CartesianGrid,
+//   XAxis,
+//   YAxis,
+//   Tooltip,
+//   Legend,
+//   BarChart,
+//   Bar,
+// } from "recharts";
 
 const Chart = () => {
   const data = [
@@ -41,14 +41,17 @@ const Chart = () => {
     },
   ];
   return (
-    <BarChart width={200} height={200} data={data}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis dataKey="Lượt Xem" />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="Lượt Xem" fill="#8884d8" />
-    </BarChart>
+    // <BarChart width={200} height={200} data={data}>
+    //   <CartesianGrid strokeDasharray="3 3" />
+    //   <XAxis dataKey="name" />
+    //   <YAxis dataKey="Lượt Xem" />
+    //   <Tooltip />
+    //   <Legend />
+    //   <Bar dataKey="Lượt Xem" fill="#8884d8" />
+    // </BarChart>
+    <div>
+      Đang phát triển
+    </div>
   );
 };
 

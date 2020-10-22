@@ -1,7 +1,8 @@
+const webpack = require('webpack');
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const Dotenv = require('dotenv').config();
-const webpack = require('webpack');
+const ESLintPlugin = require("eslint-webpack-plugin");
+
 module.exports = {
   mode: 'development',
   entry: { index: path.resolve(__dirname, "src", "index.js") },
@@ -33,9 +34,9 @@ module.exports = {
     liveReload: true,
     historyApiFallback: true,
   },
-  // optimization: {
-  //   splitChunks: { chunks: "all" },
-  // },
+  optimization: {
+    splitChunks: { chunks: "all" },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html"),
@@ -44,6 +45,12 @@ module.exports = {
       NODE_ENV: 'development',
       API_BASE: "https://homnaydocgi-api.herokuapp.com",
       APP_BASE: "http://localhost:3000"
-    })
+    }),
+    // new ESLintPlugin(options)
   ],
+  resolve: {
+    alias: {
+      srcRoot: path.resolve(__dirname, './src'),
+    }
+  }
 };

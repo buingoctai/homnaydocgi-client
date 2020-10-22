@@ -12,7 +12,7 @@ import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
 import TextField from "@material-ui/core/TextField";
 //import { DIALOG_CODE } from "../../utils/constants";
-import { translatePostGroupTitle } from "../../../../utils/utils";
+import { translatePostGroupTitle } from "srcRoot/utils/utils";
 
 const useStyles = makeStyles((theme) => ({
   dialogContainer: {
@@ -66,7 +66,7 @@ const TopicOption = ({
           <Alert
             severity="info"
             style={{ padding: "0px 0px" }}
-            //onClose={handleClose}
+          //onClose={handleClose}
           >
             <AlertTitle>Thông báo</AlertTitle>
             <div style={{ display: "flex" }}>
