@@ -1,6 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
+// const ESLintPlugin = require("eslint-webpack-plugin");
+// const options = {
+//     "parserOptions": {
+//         "ecmaVersion": 6,
+//         "sourceType": "module",
+//         "ecmaFeatures": {
+//             "jsx": true
+//         }
+//     },
+//     "parser": "esprima",
+//     "rules": {
+//         "semi": "error"
+//     }
+// };
 module.exports = {
     entry: { index: path.resolve(__dirname, "src", "index.js") },
     output: { path: path.resolve(__dirname, "dist"), filename: '[name].bundle.js', publicPath: '/' },
@@ -34,6 +47,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "src", "index.html"),
         }),
+        // new ESLintPlugin(options)
     ],
 
 };
