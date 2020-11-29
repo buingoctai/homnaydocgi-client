@@ -8,7 +8,6 @@ import {
 import initialState from "./state";
 
 const reducers = (state = initialState, action) => {
-
   switch (action.type) {
     case SAVE_MAIN_POSTS:
       return { ...state, mainPosts: action.payload };

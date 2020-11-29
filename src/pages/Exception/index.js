@@ -45,7 +45,7 @@ const Exception = (props) => {
       <Alert severity="error">
         <AlertTitle>{`${codeMessage[1]} ${
           codeContent[codeMessage[1]]
-          }`}</AlertTitle>
+        }`}</AlertTitle>
         Lỗi server —{" "}
         <strong>Hệ thống đã tự động liên hệ Bùi Ngọc Tài admin</strong>
       </Alert>

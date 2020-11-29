@@ -66,7 +66,7 @@ const TopicOption = ({
           <Alert
             severity="info"
             style={{ padding: "0px 0px" }}
-          //onClose={handleClose}
+            //onClose={handleClose}
           >
             <AlertTitle>Thông báo</AlertTitle>
             <div style={{ display: "flex" }}>

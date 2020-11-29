@@ -8,21 +8,15 @@ export const subscribePage = (params) => {
 };
 
 export const unSubscribePage = (params) => {
-  return request(
-    `${process.env.API_BASE}/notification/deleteSubscription`,
-    {
-      method: "POST",
-      data: params,
-    }
-  );
+  return request(`${process.env.API_BASE}/notification/deleteSubscription`, {
+    method: "POST",
+    data: params,
+  });
 };
 
 export const sendNotification = (params) => {
-  return request(
-    `${process.env.API_BASE}/notification/sendNotificationToAll`,
-    {
-      method: "POST",
-      data: params,
-    }
-  );
+  return request(`${process.env.API_BASE}/notification/sendNotificationToAll`, {
+    method: "POST",
+    data: params,
+  });
 };

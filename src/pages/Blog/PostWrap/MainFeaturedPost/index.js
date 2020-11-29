@@ -11,6 +11,9 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     height: "fix-content",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   image__wrap: {
     // width: (props) => (props.is_maxWidth_500px ? "100%" : "50%"),

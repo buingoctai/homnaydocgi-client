@@ -82,9 +82,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   content: {
-    color: 'rgba(41, 41, 41, 1)',
-    fontSize: '18px',
-  }
+    color: "rgba(41, 41, 41, 1)",
+    fontSize: "18px",
+  },
 }));
 
 export default function DetailPost(props) {
@@ -113,9 +113,14 @@ export default function DetailPost(props) {
             ? `${classes.grid__wrap} ${classes.large__grid_wrap}`
             : `${classes.grid__wrap} ${classes.small_grid_wrap}`
         }
-        onBlur={() => { }}
+        onBlur={() => {}}
       >
-        <Grid item xs={12} className={classes.item__grid__wrap} key="itemGridWrap">
+        <Grid
+          item
+          xs={12}
+          className={classes.item__grid__wrap}
+          key="itemGridWrap"
+        >
           {isOpenDetaiContainer && (
             <Paper className={classes.title__wrap}>
               <Typography variant="body2" style={{ cursor: "pointer" }}>
@@ -127,8 +132,7 @@ export default function DetailPost(props) {
           )}
 
           <Paper className={classes.paper__wrap} key="itemGridWrap">
-            <div className={classes.title__bookmark__wrap
-            }>
+            <div className={classes.title__bookmark__wrap}>
               <Typography
                 variant="h6"
                 color="primary"
@@ -143,10 +147,10 @@ export default function DetailPost(props) {
                   <BookmarkIcon />
                 </Button>
               ) : (
-                  <Button onClick={() => onSaveListPost(showingPost.Id)}>
-                    <BookmarkBorderIcon />
-                  </Button>
-                )}
+                <Button onClick={() => onSaveListPost(showingPost.Id)}>
+                  <BookmarkBorderIcon />
+                </Button>
+              )}
             </div>
             <br />
             {loading ? (
@@ -157,35 +161,35 @@ export default function DetailPost(props) {
                 />
               </div>
             ) : (
-                <>
-                  <Typography
-                    paragraph={true}
-                    align="justify"
-                    color="textPrimary"
-                    key="subContent"
-                    className={classes.content}
-                  >
-                    {newContent.length > 0 &&
-                      newContent.map((item) => (
-                        <>
-                          {item}
-                          <br />
-                        </>
-                      ))}
-                  </Typography>
-                  <div>
-                    <img
-                      src={showingPost.ImageUrl}
-                      alt="Ảnh"
-                      style={
-                        responsiveObj.is_maxWidth_500px
-                          ? { width: "70%" }
-                          : { width: "30%" }
-                      }
-                    />
-                  </div>
-                </>
-              )}
+              <>
+                <Typography
+                  paragraph={true}
+                  align="justify"
+                  color="textPrimary"
+                  key="subContent"
+                  className={classes.content}
+                >
+                  {newContent.length > 0 &&
+                    newContent.map((item) => (
+                      <>
+                        {item}
+                        <br />
+                      </>
+                    ))}
+                </Typography>
+                <div>
+                  <img
+                    src={showingPost.ImageUrl}
+                    alt="Ảnh"
+                    style={
+                      responsiveObj.is_maxWidth_500px
+                        ? { width: "70%" }
+                        : { width: "30%" }
+                    }
+                  />
+                </div>
+              </>
+            )}
             <br />
             <br />
             <Typography

@@ -126,7 +126,12 @@ export default compose(
   }),
   lifecycle({
     componentDidMount() {
-      console.log("process.env", process.env.API_BASE, process.env.NODE_ENV, process.env.APP_BASE);
+      console.log(
+        "process.env",
+        process.env.API_BASE,
+        process.env.NODE_ENV,
+        process.env.APP_BASE
+      );
       window.location.href = `${process.env.APP_BASE}/home`;
     },
   })

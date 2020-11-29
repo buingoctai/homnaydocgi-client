@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     transition: "transform 0.25s",
     "&:hover": {
       transform: "scale(1.01)",
+      cursor: "pointer",
     },
     padding: "5px 5px !important",
   },

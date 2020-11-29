@@ -79,6 +79,10 @@ const TOPIC_TRANSLATE_CONTENT = [
     eng: "Personal View",
     vn: "Góc Nhìn Cá Nhân",
   },
+  {
+    eng: "Sport",
+    vn: "Thể Thao",
+  },
 ];
 
 const DIALOG_CODE = {
@@ -114,10 +118,9 @@ const URL = [
 ];
 
 const NUMBER_COLUMN_SCREEN_SIZE = {
-  'mobile': 1,
-  'medium': 6
+  mobile: 1,
+  medium: 6,
 };
-
 
 const AUTHOR_DATA = {
   imageList: [
@@ -128,103 +131,121 @@ const AUTHOR_DATA = {
     {
       name: "Tuan Nguyen",
       description: "CTO tại VCCORP",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Viet Cv",
       description: "Product Owner tại CodeLearn.io",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Sơn Đức Nguyễn",
       description: "Chairman tại Học viện Thương hiệu Plato",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Nguyen Phi Van",
       description: "Board Advisor at Austria-Vietnam Innovation Council",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Đào Trung Thành",
       description: "Giám đốc Kỹ thuật (CTO), MVV Group",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
 
     {
       name: "David Trieu",
-      description:
-        "Project Director tại Hệ Sinh Thái Khởi Nghiệp IoT Việt Nam",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      description: "Project Director tại Hệ Sinh Thái Khởi Nghiệp IoT Việt Nam",
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Lê Công Thành",
       description: "President tại InfoRe Technology",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Truong Hoang Ly Phi",
       description:
         "Vice Chairwoman tại Young Businesspeople Association of Ho Chi Minh city",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
 
     {
       name: "Thanh N. Truong",
       description: "Phó Hiệu trưởng tại Trường Đại học Văn Lang",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Trieu Nguyen",
       description: "Owner and Founder tại USPA.tech",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
 
     {
       name: "Minh Đào",
       description: "Chief Ninja tại Trạm Đọc - Read Station",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Nguyễn Đức Hiển",
       description: "Phó tổng biên tập Báo Pháp Luật TP HCM",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Linh Mạnh Nguyễn",
       description:
         "Giảng dạy tại LITADO - Trường Đào Tạo Cao Cấp Digital Marketing",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Van Vu",
       description: "Professor of Mathematics tại Yale University",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Nghia Minh Le",
       description: "Director of Marketplace System tại Tiki",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Viet Tran",
       description: "Từng làm Software Architect tại Sendo",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Trần Lâm",
       description: "Co-Founder tại ATP Web",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Thanhtu Pham",
       description: "CTO tại Agiletech Vietnam",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
     {
       name: "Bùi Ngọc Tài",
       description: "Associate Software Engineer tại Zalo",
-      image: "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg"
+      image:
+        "https://img.favpng.com/3/21/8/icon-people-png-favpng-YjzPB8Ux8MUjBA5g58iDvVSzJ.jpg",
     },
   ],
 };
@@ -237,7 +258,6 @@ const AUTHOR_LIST = {
   ],
   author: [...AUTHOR_DATA.infor],
 };
-
 
 export {
   authorBrielf,
@@ -252,5 +272,5 @@ export {
   DEFAULT_TOPIC,
   URL,
   NUMBER_COLUMN_SCREEN_SIZE,
-  AUTHOR_LIST
+  AUTHOR_LIST,
 };

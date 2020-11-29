@@ -1,4 +1,8 @@
-import { TOPIC_TRANSLATE_CONTENT, URL, NUMBER_COLUMN_SCREEN_SIZE } from "./constants";
+import {
+  TOPIC_TRANSLATE_CONTENT,
+  URL,
+  NUMBER_COLUMN_SCREEN_SIZE,
+} from "./constants";
 
 export const setCookie = (cookieName, cookieValue, expiresHour) => {
   const d = new Date();
@@ -73,20 +77,26 @@ const determinateNumberColumn = (len, numberCol) => {
   const redundancy = len % numberCol;
   if (numberColData > 0) return { numberCol, numberColData, redundancy };
   determinateNumberColumn(len, numberCol - 1);
-}
+};
 export default determinateNumberColumn;
 
-export const determinateColumnData = ({ screenSize = 'medium', posts = [] }) => {
+export const determinateColumnData = ({
+  screenSize = "medium",
+  posts = [],
+}) => {
   if (posts.length === 0) return { columnDataList: [], screenSize };
   if (posts.length < 6) return { columnDataList: [posts], screenSize };
   let columnDataList = [];
 
   switch (screenSize) {
-    case 'mobile':
+    case "mobile":
       return { columnDataList: [posts], screenSize };
-    case 'medium':
+    case "medium":
       const numberPosts = posts.length;
-      const { numberCol, numberColData, redundancy } = determinateNumberColumn(numberPosts, NUMBER_COLUMN_SCREEN_SIZE['medium']);
+      const { numberCol, numberColData, redundancy } = determinateNumberColumn(
+        numberPosts,
+        NUMBER_COLUMN_SCREEN_SIZE["medium"]
+      );
 
       for (let i = 0; i < numberCol; i++) {
         let columnData = [];
@@ -94,7 +104,7 @@ export const determinateColumnData = ({ screenSize = 'medium', posts = [] }) => 
 
         for (let j = 0; j < numberColData; j++) {
           columnData.push(posts[step]);
-          step += NUMBER_COLUMN_SCREEN_SIZE['medium']; // Thêm case cho trường hợp numberCol<6
+          step += NUMBER_COLUMN_SCREEN_SIZE["medium"]; // Thêm case cho trường hợp numberCol<6
         }
         columnDataList.push(columnData);
       }
@@ -104,5 +114,4 @@ export const determinateColumnData = ({ screenSize = 'medium', posts = [] }) => 
 
       return { columnDataList, screenSize };
   }
-
-}
+};

@@ -192,6 +192,7 @@ const AddingForm = (props) => {
             <option value="Personal View">
               {translatePostGroupTitle("Personal View")}
             </option>
+            <option value="Sport">{translatePostGroupTitle("Sport")}</option>
           </Select>
           <TextField
             id="date"

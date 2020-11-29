@@ -49,9 +49,7 @@ const Chart = () => {
     //   <Legend />
     //   <Bar dataKey="Lượt Xem" fill="#8884d8" />
     // </BarChart>
-    <div>
-      Đang phát triển
-    </div>
+    <div>Đang phát triển</div>
   );
 };
 

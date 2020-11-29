@@ -1,6 +1,4 @@
-import {
-  SAVE_ALL_POST,
-} from "./constants";
+import { SAVE_ALL_POST } from "./constants";
 import initialState from "./state";
 
 const reducers = (state = initialState, action) => {

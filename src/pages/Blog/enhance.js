@@ -103,7 +103,7 @@ export default compose(
           setPostList([...selectedTopics]);
           userDataCRUD({ action: "EDIT", data: savedData });
         })
-        .catch(() => { });
+        .catch(() => {});
     },
     onSubmitFeedBack: (props) => (feedback) => {
       const {
@@ -119,8 +119,8 @@ export default compose(
           id_msg_user: "",
           message: `${userName}: ${feedback}`,
         })
-          .then(({ message }) => { })
-          .catch(() => { });
+          .then(({ message }) => {})
+          .catch(() => {});
       } else {
         setScrollCount(0);
       }
@@ -166,6 +166,7 @@ export default compose(
         serviceWorker
           .createNotificationSubscription()
           .then((subscrition) => {
+            console.log("subscrition=", subscrition);
             subscribePageDispatch(subscrition)
               .then((res) => {
                 userDataCRUD({ action: "EDIT", data: { ...res } });
@@ -221,7 +222,7 @@ export default compose(
           .then(() => {
             getGetAllTopicDispatch();
           })
-          .catch(() => { });
+          .catch(() => {});
       } else {
         setTopic([...topic]);
 

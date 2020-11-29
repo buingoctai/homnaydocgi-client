@@ -128,13 +128,13 @@ const useToolbarStyles = makeStyles((theme) => ({
   highlight:
     theme.palette.type === "light"
       ? {
-        color: theme.palette.secondary.main,
-        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-      }
+          color: theme.palette.secondary.main,
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+        }
       : {
-        color: theme.palette.text.primary,
-        backgroundColor: theme.palette.secondary.dark,
-      },
+          color: theme.palette.text.primary,
+          backgroundColor: theme.palette.secondary.dark,
+        },
   title: {
     display: "flex",
     flexGrow: "1",
@@ -348,9 +348,7 @@ const DataTable = (props) => {
                         </a>
                       </TableCell>
                       <TableCell align="right">{row.Title}</TableCell>
-                      <TableCell align="right">
-                        {`${row.Brief}....`}
-                      </TableCell>
+                      <TableCell align="right">{`${row.Brief}....`}</TableCell>
                       <TableCell align="right">
                         {" "}
                         {translatePostGroupTitle(row.Topic)}
