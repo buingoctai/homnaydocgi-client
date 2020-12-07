@@ -2,18 +2,22 @@ import { connect } from 'react-redux';
 import { compose, withHandlers, withState, lifecycle } from 'recompose';
 
 import UserDataHandler from 'srcRoot/components/HOC/UserDataHandler';
-import { userDataCRUD } from 'srcRoot/utils/utils';
+import { userDataCRUD, createBooleanObj } from 'srcRoot/utils/utils';
 import {
   asyncGetAllArticle,
   asynGetAudioArticle,
   asynCreateAudioArticle,
   asyncGetAllBook,
   asyncGetCurrentBook,
+  asyncCreateCollection,
+  asyncCreateMp3,
   saveAudioList,
+  saveAllBook,
 } from '../../pages/Bots/Store/actions';
 
 const mapStateToProps = (state) => {
   const { readNewReducers } = state;
+  console.log('state change');
   return {
     allArticle: readNewReducers.allArticle,
     audioList: readNewReducers.audioList,
@@ -28,7 +32,10 @@ const mapDispatchToProps = (dispatch) => {
     createAudioArticleDispatch: (payload) => asynCreateAudioArticle(payload),
     getAllBookDispatch: (payload) => asyncGetAllBook(payload),
     getCurrentBookDispatch: (payload) => asyncGetCurrentBook(payload),
+    createCollectionDispatch: (payload) => asyncCreateCollection(payload),
+    createMp3Dispatch: (payload) => asyncCreateMp3(payload),
     saveAudioListDispatch: (payload) => dispatch(saveAudioList(payload)),
+    saveAllBookDispatch: (payload) => dispatch(saveAllBook(payload)),
   };
 };
 export default compose(
@@ -36,6 +43,8 @@ export default compose(
   withState('showingPost', 'setShowingPost', {}),
   withState('currentAudioArticle', 'setCurrentAudioArticle', {}),
   withState('currentPageIndex', 'setCurrentPageIndex', 1),
+  withState('visibleList', 'setVisibleList', {}),
+
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
     onClickListenArticle: (props) => ({
@@ -90,11 +99,40 @@ export default compose(
         })
         .catch();
     },
-    onGetCurrentBook: (props) => (id) => {
-      const { getCurrentBookDispatch } = props;
+
+    onHandleVisibleBook: (props) => (id) => {
+      const {
+        allBook,
+        visibleList,
+        setVisibleList,
+        getCurrentBookDispatch,
+      } = props;
+      const newVisibleList = createBooleanObj(allBook.data);
+
+      if (visibleList[id]) {
+        newVisibleList[id] = false;
+      } else {
+        newVisibleList[id] = true;
+      }
+      setVisibleList(newVisibleList);
       getCurrentBookDispatch({ id });
     },
+    onCreateCollection: (props) => (text) => {
+      console.log('textt', text);
+      const {
+        allBook,
+        saveAllBookDispatch,
+        createCollectionDispatch,
+        getAllBookDispatch,
+      } = props;
+      createCollectionDispatch({ name: text })
+        .then((res) => {
+          getAllBookDispatch({ searchTxt: '' });
+        })
+        .catch((err) => {});
+    },
   }),
+
   lifecycle({
     componentDidMount() {
       const { name = '', postList = [] } = userDataCRUD({ action: 'GET' });

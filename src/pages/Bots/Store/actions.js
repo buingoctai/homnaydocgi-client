@@ -11,6 +11,8 @@ import {
   createAudioArticleEffect,
   getAllBookEffect,
   getCurrentBookEffect,
+  createCollectionEffect,
+  createMp3Effect,
 } from './sagas';
 
 const getAllArticle = (payload, resolve, reject) => {
@@ -63,6 +65,25 @@ export const asyncGetCurrentBook = (payload) => {
   });
 };
 
+const createCollection = (payload, resolve, reject) => {
+  sagaMiddleware.run(createCollectionEffect, payload, resolve, reject);
+};
+
+export const asyncCreateCollection = (payload) => {
+  return new Promise((resolve, reject) => {
+    createCollection(payload, resolve, reject);
+  });
+};
+
+const createMp3 = (payload, resolve, reject) => {
+  sagaMiddleware.run(createMp3Effect, payload, resolve, reject);
+};
+
+export const asyncCreateMp3 = (payload) => {
+  return new Promise((resolve, reject) => {
+    createMp3(payload, resolve, reject);
+  });
+};
 export const saveAllArticle = (payload) => {
   return {
     type: SAVE_ALL_ARTICLE,

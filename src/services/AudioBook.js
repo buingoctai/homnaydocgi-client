@@ -13,3 +13,17 @@ export const getCurrentBook = (param) => {
     data: { ...param },
   });
 };
+
+export const createCollection = (params) => {
+  return request(`${process.env.API_BASE}/google-drive/createFolder`, {
+    method: 'POST',
+    data: { ...params },
+  });
+};
+
+export const createMp3 = (params) => {
+  return request(`${process.env.API_BASE}/google-drive/createMp3`, {
+    method: 'POST',
+    data: { ...params },
+  });
+};

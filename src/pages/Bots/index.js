@@ -118,11 +118,14 @@ const Bots = (props) => {
     allArticle,
     allBook,
     currentBook,
+    visibleList,
     currentAudioArticle,
     currentPageIndex,
     onClickListenArticle,
     onChangePageIndex,
     onGetCurrentBook,
+    onHandleVisibleBook,
+    onCreateCollection,
   } = props;
   const classes = useStyles({ ...responsiveObj });
   const theme = useTheme();
@@ -254,7 +257,10 @@ const Bots = (props) => {
               <AudioBook
                 allBook={allBook}
                 currentBook={currentBook}
+                visibleList={visibleList}
                 onGetCurrentBook={onGetCurrentBook}
+                onHandleVisibleBook={onHandleVisibleBook}
+                onCreateCollection={onCreateCollection}
               />
               {/* <TabPanel value={value} index={2} dir={theme.direction}>
                 1m-0hE4upU4Y6IH2j_Hw4WMJcCvROcGjK ĐANG PHÁT TRIỂN

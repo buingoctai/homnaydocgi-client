@@ -4,7 +4,12 @@ import {
   getAudioArticle,
   createAudioArticle,
 } from '../../../services/ReadNew';
-import { getAllBook, getCurrentBook } from '../../../services/AudioBook';
+import {
+  getAllBook,
+  getCurrentBook,
+  createCollection,
+  createMp3,
+} from '../../../services/AudioBook';
 
 import { saveAllArticle, saveAllBook, saveCurrentBook } from './actions';
 
@@ -63,10 +68,39 @@ function* getCurrentBookEffect(payload, resolve, reject) {
   }
 }
 
+function* createCollectionEffect(payload, resolve, reject) {
+  const response = yield call(createCollection, payload);
+
+  if (response) {
+    console.log('response', response);
+    if (!response.error) {
+      resolve(response);
+    } else {
+      reject(response);
+    }
+  } else {
+    reject('Error calling api');
+  }
+}
+
+function* createMp3Effect(payload, resolve, reject) {
+  const response = yield call(createMp3, payload);
+
+  if (response) {
+    console.log('response', response);
+
+    resolve(response);
+  } else {
+    reject('Error calling api');
+  }
+}
+
 export {
   getAllArticleEffect,
   getAudioArticleEffect,
   createAudioArticleEffect,
   getAllBookEffect,
   getCurrentBookEffect,
+  createCollectionEffect,
+  createMp3Effect,
 };

@@ -2,7 +2,7 @@ import {
   TOPIC_TRANSLATE_CONTENT,
   URL,
   NUMBER_COLUMN_SCREEN_SIZE,
-} from "./constants";
+} from './constants';
 
 export const setCookie = (cookieName, cookieValue, expiresHour) => {
   const d = new Date();
@@ -14,7 +14,7 @@ export const setCookie = (cookieName, cookieValue, expiresHour) => {
 export const getCookie = (cookieName) => {
   const match = document.cookie.match(new RegExp(`(^| )${cookieName}=([^;]+)`));
   if (match) return match[2];
-  return "";
+  return '';
 };
 
 export const translatePostGroupTitle = (param) => {
@@ -39,20 +39,20 @@ export const userDataCRUD = ({ action, data }) => {
   if (!action) return;
 
   switch (action) {
-    case "GET":
-      return JSON.parse(localStorage.getItem("userData"));
-    case "EDIT":
-      const currentData = JSON.parse(localStorage.getItem("userData"));
+    case 'GET':
+      return JSON.parse(localStorage.getItem('userData'));
+    case 'EDIT':
+      const currentData = JSON.parse(localStorage.getItem('userData'));
 
       if (currentData) {
         const updateData = { ...currentData, ...data };
-        localStorage.setItem("userData", JSON.stringify(updateData));
+        localStorage.setItem('userData', JSON.stringify(updateData));
         break;
       }
-      localStorage.setItem("userData", JSON.stringify({ ...data }));
+      localStorage.setItem('userData', JSON.stringify({ ...data }));
       break;
-    case "DELETE":
-      localStorage.removeItem("userData");
+    case 'DELETE':
+      localStorage.removeItem('userData');
       break;
     default:
       return;
@@ -60,7 +60,7 @@ export const userDataCRUD = ({ action, data }) => {
 };
 
 export const isBookMarkedPost = (postId) => {
-  const { postList = [] } = JSON.parse(localStorage.getItem("userData"));
+  const { postList = [] } = JSON.parse(localStorage.getItem('userData'));
 
   if (postList.length === 0) return false;
   return postList.includes(postId);
@@ -81,7 +81,7 @@ const determinateNumberColumn = (len, numberCol) => {
 export default determinateNumberColumn;
 
 export const determinateColumnData = ({
-  screenSize = "medium",
+  screenSize = 'medium',
   posts = [],
 }) => {
   if (posts.length === 0) return { columnDataList: [], screenSize };
@@ -89,13 +89,13 @@ export const determinateColumnData = ({
   let columnDataList = [];
 
   switch (screenSize) {
-    case "mobile":
+    case 'mobile':
       return { columnDataList: [posts], screenSize };
-    case "medium":
+    case 'medium':
       const numberPosts = posts.length;
       const { numberCol, numberColData, redundancy } = determinateNumberColumn(
         numberPosts,
-        NUMBER_COLUMN_SCREEN_SIZE["medium"]
+        NUMBER_COLUMN_SCREEN_SIZE['medium']
       );
 
       for (let i = 0; i < numberCol; i++) {
@@ -104,7 +104,7 @@ export const determinateColumnData = ({
 
         for (let j = 0; j < numberColData; j++) {
           columnData.push(posts[step]);
-          step += NUMBER_COLUMN_SCREEN_SIZE["medium"]; // Thêm case cho trường hợp numberCol<6
+          step += NUMBER_COLUMN_SCREEN_SIZE['medium']; // Thêm case cho trường hợp numberCol<6
         }
         columnDataList.push(columnData);
       }
@@ -114,4 +114,13 @@ export const determinateColumnData = ({
 
       return { columnDataList, screenSize };
   }
+};
+
+export const createBooleanObj = (arr = []) => {
+  let obj = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    obj[arr[i].id] = false;
+  }
+  return obj;
 };

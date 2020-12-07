@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
@@ -10,6 +10,8 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import Button from '@material-ui/core/Button';
+import InputPopup from '../InputPopup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,26 +23,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AudioBook(props) {
+const AudioBook = (props) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [currentBook, setCurrentBook] = React.useState(false);
-  const handleClick = (id) => {
-    if (!open) {
-      setCurrentBook(id);
-      props.onGetCurrentBook(id);
-    }
-    setOpen(!open);
+  const [open, setOpen] = useState(false);
+  const { onHandleVisibleBook, onCreateCollection } = props;
+
+  const HandleVisibleBook = (id) => {
+    onHandleVisibleBook(id);
+  };
+  const handleOpenInputPopup = () => {
+    setOpen(true);
+  };
+  const handleCloseInputPopup = () => {
+    setOpen(false);
   };
 
-  console.log(props.allBook);
+  const handleCreateCollection = (text) => (props) => {
+    console.log('text', text);
+    onCreateCollection(text);
+    setOpen(false);
+  };
+
   return (
     <List
       component='nav'
       aria-labelledby='nested-list-subheader'
       subheader={
         <ListSubheader component='div' id='nested-list-subheader'>
-          Sách Đang Có
+          <span>Sách Đang Có</span>
+          <Button color='primary' onClick={handleOpenInputPopup}>
+            Thêm bộ sưu tập
+          </Button>
+          <InputPopup
+            open={open}
+            handleCloseInputPopup={handleCloseInputPopup}
+            handleCreateCollection={handleCreateCollection}
+          />
         </ListSubheader>
       }
       className={classes.root}
@@ -48,15 +66,15 @@ export default function AudioBook(props) {
       {props.allBook.totalRecord > 0 &&
         props.allBook.data.map((item) => (
           <>
-            <ListItem button onClick={() => handleClick(item.id)}>
+            <ListItem button onClick={() => HandleVisibleBook(item.id)}>
               <ListItemIcon>
                 <MenuBookIcon color='primary' />
               </ListItemIcon>
               <ListItemText primary={item.name} />
-              {open ? <ExpandLess /> : <ExpandMore />}
+              {props.visibleList[item.id] ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse
-              in={open && item.id === currentBook}
+              in={props.visibleList[item.id]}
               timeout='auto'
               unmountOnExit
             >
@@ -79,4 +97,6 @@ export default function AudioBook(props) {
         ))}
     </List>
   );
-}
+};
+
+export default AudioBook;
