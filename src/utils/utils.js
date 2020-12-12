@@ -112,10 +112,17 @@ export const determinateColumnData = ({
         columnDataList[k].push(posts[numberPosts - redundancy + k]);
       }
 
-      return { columnDataList, screenSize };
+      console.log('columnDataList=', columnDataList);
+      return { numberCol, columnDataList, screenSize };
   }
 };
 
+export const addSkeletonLoading = ({ data = [], numberCol }) => {
+  for (let i = 0; i < numberCol; i++) {
+    data[i].push({ isSkeleton: true });
+  }
+  return [...data];
+};
 export const createBooleanObj = (arr = []) => {
   let obj = {};
 

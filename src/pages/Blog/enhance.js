@@ -1,10 +1,10 @@
-import { connect } from "react-redux";
-import { compose, withHandlers, withState, lifecycle } from "recompose";
-import { DEFAULT_TOPIC } from "srcRoot/utils/constants";
-import { userDataCRUD } from "srcRoot/utils/utils";
-import OpenDetaiPostHandler from "srcRoot/components/HOC/OpenDetaiPostHandler";
-import UserDataHandler from "srcRoot/components/HOC/UserDataHandler";
-import * as serviceWorker from "srcRoot/serviceWorker";
+import { connect } from 'react-redux';
+import { compose, withHandlers, withState, lifecycle } from 'recompose';
+import { DEFAULT_TOPIC } from 'srcRoot/utils/constants';
+import { userDataCRUD } from 'srcRoot/utils/utils';
+import OpenDetaiPostHandler from 'srcRoot/components/HOC/OpenDetaiPostHandler';
+import UserDataHandler from 'srcRoot/components/HOC/UserDataHandler';
+import * as serviceWorker from 'srcRoot/serviceWorker';
 import {
   asyncGetMainPosts,
   asyncGetFeaturedPosts,
@@ -14,7 +14,7 @@ import {
   asyncSubscribePage,
   asyncUnSubscribePage,
   saveAllPost,
-} from "./Store/actions";
+} from './Store/actions';
 
 const mapStateToProps = (state) => {
   const { blogReducers } = state;
@@ -39,18 +39,18 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
   UserDataHandler,
   OpenDetaiPostHandler,
-  withState("isLoadingPage", "setIsLoadingPage", false),
-  withState("dialogContent", "setDialogContent", {
+  withState('isLoadingPage', 'setIsLoadingPage', false),
+  withState('dialogContent', 'setDialogContent', {
     visible: false,
-    content: "",
+    content: '',
   }),
-  withState("currentPageIndex", "setCurrentPageIndex", 1),
-  withState("isShowPaging", "setIsShowPaging", true),
-  withState("isStopCallApiGetAllPost", "setIsStopCallApiGetAllPost", false),
-  withState("isOpenChoseTopic", "setIsOpenChoseTopic", false),
-  withState("scrollCount", "setScrollCount", 0),
-  withState("isOpenFeedBack", "setIsOpenFeedBack", false),
-  withState("isOpenNotification", "setIsOpenNotification", false),
+  withState('currentPageIndex', 'setCurrentPageIndex', 1),
+  withState('isShowPaging', 'setIsShowPaging', true),
+  withState('isStopCallApiGetAllPost', 'setIsStopCallApiGetAllPost', false),
+  withState('isOpenChoseTopic', 'setIsOpenChoseTopic', false),
+  withState('scrollCount', 'setScrollCount', 0),
+  withState('isOpenFeedBack', 'setIsOpenFeedBack', false),
+  withState('isOpenNotification', 'setIsOpenNotification', false),
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
     onHandleScrollToBottom: (props) => () => {
@@ -70,7 +70,7 @@ export default compose(
       setIsShowPaging(false);
       getAllPostDispatch({
         paging: { pageIndex: currentPageIndex + 1, pageSize: 6 },
-        orderList: { orderBy: "SubmitDate", orderType: "DESC" },
+        orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
       })
         .then((response) => {
           setTimeout(() => setIsShowPaging(true), 4000);
@@ -101,7 +101,7 @@ export default compose(
         .then(() => {
           const savedData = { topic: [...selectedTopics], name: name };
           setPostList([...selectedTopics]);
-          userDataCRUD({ action: "EDIT", data: savedData });
+          userDataCRUD({ action: 'EDIT', data: savedData });
         })
         .catch(() => {});
     },
@@ -116,7 +116,7 @@ export default compose(
 
       if (feedback) {
         suggestSubscribeNotifiByBotDispatch({
-          id_msg_user: "",
+          id_msg_user: '',
           message: `${userName}: ${feedback}`,
         })
           .then(({ message }) => {})
@@ -150,31 +150,31 @@ export default compose(
     onSubscribePage: (props) => () => {
       const { subscribePageDispatch, unSubscribePageDispatch } = props;
       const { subscriptionId } = userDataCRUD({
-        action: "GET",
+        action: 'GET',
       });
 
-      if (Notification.permission === "granted" && subscriptionId) {
+      if (Notification.permission === 'granted' && subscriptionId) {
         unSubscribePageDispatch({ subscriptionId })
           .then(() => {
-            userDataCRUD({ action: "EDIT", data: { subscriptionId: "" } });
+            userDataCRUD({ action: 'EDIT', data: { subscriptionId: '' } });
           })
-          .catch(() => console.log("err"));
+          .catch(() => console.log('err'));
         return;
       }
       serviceWorker.askUserPermission().then((consent) => {
-        if (consent != "granted") return;
+        if (consent != 'granted') return;
         serviceWorker
           .createNotificationSubscription()
           .then((subscrition) => {
-            console.log("subscrition=", subscrition);
+            console.log('subscrition=', subscrition);
             subscribePageDispatch(subscrition)
               .then((res) => {
-                userDataCRUD({ action: "EDIT", data: { ...res } });
+                userDataCRUD({ action: 'EDIT', data: { ...res } });
               })
               .catch();
           })
           .catch((err) =>
-            console.log("error: %s, code: %s", err.message, err.code)
+            console.log('error: %s, code: %s', err.message, err.code)
           );
       });
     },
@@ -194,20 +194,20 @@ export default compose(
         setTopic,
         setPostList,
       } = this.props;
-      window.addEventListener("scroll", this.props.onScroll);
-      window.addEventListener("click", function (e) {
+      window.addEventListener('scroll', this.props.onScroll);
+      window.addEventListener('click', function (e) {
         if (
-          document.getElementById("notiDivider") &&
-          !document.getElementById("notiDivider").contains(e.target) &&
-          !document.getElementById("notiDividerBtn").contains(e.target)
+          document.getElementById('notiDivider') &&
+          !document.getElementById('notiDivider').contains(e.target) &&
+          !document.getElementById('notiDividerBtn').contains(e.target)
         ) {
           setIsOpenNotification(false);
         }
       });
 
-      userDataCRUD({ action: "EDIT", data: {} });
-      const { name = "", topic = [], postList = [] } = userDataCRUD({
-        action: "GET",
+      userDataCRUD({ action: 'EDIT', data: {} });
+      const { name = '', topic = [], postList = [] } = userDataCRUD({
+        action: 'GET',
       });
       setUserName(name);
       setTopic(topic);
@@ -233,7 +233,7 @@ export default compose(
 
       getAllPostDispatch({
         paging: { pageIndex: currentPageIndex, pageSize: 6 },
-        orderList: { orderBy: "SubmitDate", orderType: "DESC" },
+        orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
       })
         .then((response) => {
           saveAllPostDispatch(response);
@@ -244,8 +244,8 @@ export default compose(
         });
     },
     componentWillUnmount() {
-      window.removeEventListener("scroll", this.props.onScroll);
-      window.removeEventListener("click", this.props.onScroll);
+      window.removeEventListener('scroll', this.props.onScroll);
+      window.removeEventListener('click', this.props.onScroll);
     },
   })
 );

@@ -8,37 +8,60 @@ import TextField from '@material-ui/core/TextField';
 
 export default function InputPopup({
   open,
-  handleCloseInputPopup,
-  handleCreateCollection,
+  title,
+  createdText,
+  handleClose,
+  handleCreate,
 }) {
   const [text, setText] = useState('');
-  const handleChange = (value) => {
+  const [disabled, setDisabled] = useState(text ? false : true);
+  const [error, setError] = useState('');
+  const onChangeText = (value) => {
     setText(value);
+    const isCreatedText =
+      createdText.filter((item) => item.name === value).length > 0;
+
+    if (isCreatedText) {
+      console.log('isCreatedText ten nay da ton tai');
+      setDisabled(true);
+      setError('Tên này đã tồn tại.');
+    } else {
+      console.log('isCreatedText sss');
+      setDisabled(false);
+    }
+    if (!value) {
+      setDisabled(true);
+      setError('');
+    }
+  };
+
+  const onClose = () => {
+    setError('');
+    handleClose();
   };
 
   return (
     <div>
       <Dialog
         open={open}
-        onClose={handleCloseInputPopup}
+        onClose={onClose}
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
       >
-        <DialogTitle id='alert-dialog-title'>
-          {'Nhập tên bộ sưu tập'}
-        </DialogTitle>
+        <DialogTitle id='alert-dialog-title'>{title}</DialogTitle>
         <DialogContent>
           <TextField
             id='standard-basic'
-            label='Standard'
-            onChange={({ target }) => handleChange(target.value)}
+            label={error}
+            onChange={({ target }) => onChangeText(target.value)}
           />
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={handleCreateCollection(text)}
             color='primary'
             autoFocus
+            onClick={handleCreate(text)}
+            disabled={disabled}
           >
             Tạo
           </Button>

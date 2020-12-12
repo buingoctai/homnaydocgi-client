@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import ScalingSquaresSpinner from '@bit/bondz.react-epic-spinners.scaling-squares-spinner';
 import { Chart } from '@bit/primefaces.primereact.chart';
 
 import NotificationDivider from 'srcRoot/components/NotificationDivider';
@@ -131,7 +130,7 @@ const Blog = (props) => {
   };
 
   const classes = useStyles({ ...responsiveObj });
-
+  // const isLoadingPage = true;
   return (
     <React.Fragment>
       <CssBaseline />
@@ -144,11 +143,11 @@ const Blog = (props) => {
           isOpenNotification={isOpenNotification}
           onSubscribePage={onSubscribePage}
         />
-        {isLoadingPage && (
+        {/* {isLoadingPage && (
           <div className={classes.totalContentLoadingWrap}>
             <ScalingSquaresSpinner color='#000000' size='100' />
           </div>
-        )}
+        )} */}
 
         {isOpenNotification && (
           <NotificationDivider
@@ -168,66 +167,51 @@ const Blog = (props) => {
           onSubmitFeedBack: onSubmitFeedBack,
         })}
 
-        {!isLoadingPage && (
-          <main>
-            <div className={classes.main}>
-              <MainFeaturedPost
-                post={mainPosts}
+        <main>
+          <div className={classes.main}>
+            <MainFeaturedPost
+              post={mainPosts}
+              responsiveObj={responsiveObj}
+              isLoadingPage={isLoadingPage}
+              onHandleOpenDetailContainer={onHandleOpenDetailContainer}
+            />
+            {!responsiveObj.is_maxWidth_500px && (
+              <AuthorPost
+                type='image'
+                title='Các khái niệm mới'
+                data={AUTHOR_LIST.image}
+                navigateTime={3000}
+                responsiveObj={responsiveObj}
+              />
+            )}
+            {!responsiveObj.is_maxWidth_500px && (
+              <AuthorPost
+                type='infor'
+                title='Chuyên gia'
+                data={AUTHOR_LIST.author}
+                navigateTime={1500}
+                responsiveObj={responsiveObj}
+              />
+            )}
+          </div>
+          <div className={classes.featuredContent}>
+            <Grid
+              container
+              spacing={4}
+              className={`${classes.featureGrid} ${classes.width2Col}`}
+            >
+              <FeaturedPost
+                key='featured post'
+                post={featuredPosts}
+                isLoadingPage={isLoadingPage}
                 responsiveObj={responsiveObj}
                 onHandleOpenDetailContainer={onHandleOpenDetailContainer}
+                widthCol={6}
               />
-              {!responsiveObj.is_maxWidth_500px && (
-                <AuthorPost
-                  type='image'
-                  title='Các khái niệm mới'
-                  data={AUTHOR_LIST.image}
-                  navigateTime={3000}
-                  responsiveObj={responsiveObj}
-                />
-              )}
-              {!responsiveObj.is_maxWidth_500px && (
-                <AuthorPost
-                  type='infor'
-                  title='Chuyên gia'
-                  data={AUTHOR_LIST.author}
-                  navigateTime={1500}
-                  responsiveObj={responsiveObj}
-                />
-              )}
-            </div>
-            {/* <div className={classes.featuredContent}>
+            </Grid>
+          </div>
 
-              <Grid container spacing={4} className={`${classes.featureGrid} ${classes.width1Col}`}>
-                <FeaturedPost
-                  key="featured post"
-                  post={featuredPosts}
-                  responsiveObj={responsiveObj}
-                  onHandleOpenDetailContainer={onHandleOpenDetailContainer}
-                  widthCol={12}
-                />
-              </Grid>
-              <div className={classes.developing}>
-                <div style={{ width: 400 }}>
-                  <Chart type='pie' data={data} />
-                </div>
-              </div>
-            </div> */}
-            <div className={classes.featuredContent}>
-              <Grid
-                container
-                spacing={4}
-                className={`${classes.featureGrid} ${classes.width2Col}`}
-              >
-                <FeaturedPost
-                  key='featured post'
-                  post={featuredPosts}
-                  responsiveObj={responsiveObj}
-                  onHandleOpenDetailContainer={onHandleOpenDetailContainer}
-                  widthCol={6}
-                />
-              </Grid>
-            </div>
-
+          {!isLoadingPage && (
             <Grid container spacing={5} className={classes.mainGrid}>
               <Main title='Tất cả' />
               <PostGrid
@@ -239,8 +223,9 @@ const Blog = (props) => {
                 onHandleOpenDetailContainer={onHandleOpenDetailContainer}
               />
             </Grid>
-          </main>
-        )}
+          )}
+        </main>
+
         {isOpenDetaiContainer && (
           <DetailPost
             post={detailPost}

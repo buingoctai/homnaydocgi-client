@@ -44,6 +44,8 @@ export default compose(
   withState('currentAudioArticle', 'setCurrentAudioArticle', {}),
   withState('currentPageIndex', 'setCurrentPageIndex', 1),
   withState('visibleList', 'setVisibleList', {}),
+  withState('isLoadingPage', 'setIsLoadingPage', false),
+  withState('isLoadingAudioBook', 'setIsLoadingAudioBook', false),
 
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
@@ -105,6 +107,7 @@ export default compose(
         allBook,
         visibleList,
         setVisibleList,
+        setIsLoadingAudioBook,
         getCurrentBookDispatch,
       } = props;
       const newVisibleList = createBooleanObj(allBook.data);
@@ -115,7 +118,14 @@ export default compose(
         newVisibleList[id] = true;
       }
       setVisibleList(newVisibleList);
-      getCurrentBookDispatch({ id });
+      setIsLoadingAudioBook(true);
+      getCurrentBookDispatch({ id })
+        .then(() => {
+          setIsLoadingAudioBook(false);
+        })
+        .catch(() => {
+          setIsLoadingAudioBook(false);
+        });
     },
     onCreateCollection: (props) => (text) => {
       console.log('textt', text);
@@ -131,6 +141,23 @@ export default compose(
         })
         .catch((err) => {});
     },
+    onCreateAudio: (props) => (text) => {
+      const { visibleList, createMp3Dispatch, getCurrentBookDispatch } = props;
+      console.log('visibleList=', visibleList, text);
+      let folderId = '';
+      for (const [key, value] of Object.entries(visibleList)) {
+        if (value) {
+          folderId = key;
+        }
+      }
+      if (folderId) {
+        createMp3Dispatch({ id: folderId, url: text })
+          .then((res) => {
+            getCurrentBookDispatch({ id: folderId });
+          })
+          .catch();
+      }
+    },
   }),
 
   lifecycle({
@@ -143,7 +170,15 @@ export default compose(
       //   paging: { pageIndex: 1, pageSize: 5 },
       //   orderList: { orderType: 'DESC', orderBy: 'title' },
       // });
-      this.props.getAllBookDispatch({ searchTxt: '' });
+      this.props.setIsLoadingPage(true);
+      this.props
+        .getAllBookDispatch({ searchTxt: '' })
+        .then(() => {
+          this.props.setIsLoadingPage(false);
+        })
+        .catch(() => {
+          this.props.setIsLoadingPage(false);
+        });
     },
   })
 );

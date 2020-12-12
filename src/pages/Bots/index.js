@@ -3,11 +3,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import PropTypes from 'prop-types';
-import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import MusicVideoIcon from '@material-ui/icons/MusicVideo';
@@ -15,8 +12,8 @@ import VideoCallIcon from '@material-ui/icons/VideoCall';
 import ChatIcon from '@material-ui/icons/Chat';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import TocIcon from '@material-ui/icons/Toc';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-import ReadNews from './components/ReadNews';
 import AudioBook from './components/AudioBook';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Header from '../../components/Header';
@@ -73,6 +70,11 @@ const useStyles = makeStyles((theme) => ({
   tabWrap: {
     backgroundColor: theme.palette.background.paper,
     width: (props) => (props.is_maxWidth_500px ? '95%' : '70%'),
+    display: (props) => props.isLoadingPage && 'flex',
+    alignItems: (props) => props.isLoadingPage && 'center',
+    height: (props) => props.isLoadingPage && '700px',
+    justifyContent: (props) => props.isLoadingPage && 'center',
+    flexDirection: (props) => props.isLoadingPage && 'column',
   },
   personalizedUserWrap: {
     display: 'flex',
@@ -121,24 +123,19 @@ const Bots = (props) => {
     visibleList,
     currentAudioArticle,
     currentPageIndex,
+    isLoadingPage,
+    isLoadingAudioBook,
     onClickListenArticle,
     onChangePageIndex,
     onGetCurrentBook,
     onHandleVisibleBook,
     onCreateCollection,
+    onCreateAudio,
   } = props;
-  const classes = useStyles({ ...responsiveObj });
+  const classes = useStyles({ ...responsiveObj, isLoadingPage });
   const theme = useTheme();
   const [value, setValue] = useState(0);
   const [hidingUserIcon, setHidingUserIcon] = useState(true);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
 
   const onScroll = () => {
     // Khoảng cách từ đỉnh scroll bar đến đỉnh của browser
@@ -173,99 +170,23 @@ const Bots = (props) => {
             <TocIcon className={classes.icon} />
           </div>
           <div className={classes.tabWrap}>
-            <AppBar position='static' color='default'>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                indicatorColor='primary'
-                textColor='primary'
-                variant='fullWidth'
-                aria-label='full width tabs example'
-              >
-                {/* <Tab
-                  label={
-                    <div className={classes.tabLabelWrap}>
-                      <MusicVideoIcon />
-                      {!responsiveObj.is_maxWidth_500px && (
-                        <span
-                          style={{ paddingLeft: '5px', fontWeight: '1000' }}
-                        >
-                          Đọc Báo
-                        </span>
-                      )}
-                    </div>
-                  }
-                  {...a11yProps(0)}
-                /> */}
-                <Tab
-                  label={
-                    <div className={classes.tabLabelWrap}>
-                      <VideoCallIcon />
-                      {!responsiveObj.is_maxWidth_500px && (
-                        <span
-                          style={{ paddingLeft: '5px', fontWeight: '1000' }}
-                        >
-                          Nghe Đọc Sách
-                        </span>
-                      )}
-                    </div>
-                  }
-                  {...a11yProps(1)}
-                />
-                {/* <Tab
-                  label={
-                    <div className={classes.tabLabelWrap}>
-                      <ChatIcon />
-                      {!responsiveObj.is_maxWidth_500px && (
-                        <span
-                          style={{ paddingLeft: '5px', fontWeight: '1000' }}
-                        >
-                          Chat
-                        </span>
-                      )}
-                    </div>
-                  }
-                  {...a11yProps(2)}
-                /> */}
-              </Tabs>
-            </AppBar>
-            <SwipeableViews
-              axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-              index={value}
-              onChangeIndex={handleChangeIndex}
-            >
-              {/* <TabPanel
-                value={value}
-                index={0}
-                dir={theme.direction}
-                className={classes.tabpanelWrap}
-              >
-                <ReadNews
-                  allArticle={allArticle}
-                  currentAudioArticle={currentAudioArticle}
-                  currentPageIndex={currentPageIndex}
-                  onClickListenArticle={onClickListenArticle}
-                  onChangePageIndex={onChangePageIndex}
-                  responsiveObj={responsiveObj}
-                />
-              </TabPanel> */}
-              {/* <TabPanel value={value} index={0} dir={theme.direction}>
-                <audio controls='controls'>
-                  <source src='https://docs.google.com/uc?export=download&id=1-YQPr3AOeB4BzT_v1rb3wPhn8DH02nbL' />
-                </audio>
-              </TabPanel> */}
+            {isLoadingPage ? (
+              <>
+                <span>Đang tải tất cả bộ sưu tập</span>
+                <CircularProgress />
+              </>
+            ) : (
               <AudioBook
                 allBook={allBook}
                 currentBook={currentBook}
                 visibleList={visibleList}
+                isLoadingAudioBook={isLoadingAudioBook}
                 onGetCurrentBook={onGetCurrentBook}
                 onHandleVisibleBook={onHandleVisibleBook}
                 onCreateCollection={onCreateCollection}
+                onCreateAudio={onCreateAudio}
               />
-              {/* <TabPanel value={value} index={2} dir={theme.direction}>
-                1m-0hE4upU4Y6IH2j_Hw4WMJcCvROcGjK ĐANG PHÁT TRIỂN
-              </TabPanel> */}
-            </SwipeableViews>
+            )}
           </div>
           <div className={classes.personalizedChartWrap}>
             <BarChart />
