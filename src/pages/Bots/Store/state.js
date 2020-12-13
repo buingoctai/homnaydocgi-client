@@ -3,6 +3,7 @@ const state = {
   audioList: [],
   allBook: { data: [], totalRecord: 0 },
   currentBook: { data: [], id: '' },
+  thumb: {},
 };
 
 export default state;

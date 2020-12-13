@@ -120,6 +120,7 @@ const Bots = (props) => {
     allArticle,
     allBook,
     currentBook,
+    thumb,
     visibleList,
     currentAudioArticle,
     currentPageIndex,
@@ -180,6 +181,7 @@ const Bots = (props) => {
                 allBook={allBook}
                 currentBook={currentBook}
                 visibleList={visibleList}
+                thumb={thumb}
                 isLoadingAudioBook={isLoadingAudioBook}
                 onGetCurrentBook={onGetCurrentBook}
                 onHandleVisibleBook={onHandleVisibleBook}

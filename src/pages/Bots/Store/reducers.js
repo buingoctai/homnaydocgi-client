@@ -3,6 +3,7 @@ import {
   SAVE_AUDIO_LIST,
   SAVE_ALL_BOOK,
   SAVE_CURRENT_BOOK,
+  SAVE_THUMB,
 } from './constants';
 import initialState from './state';
 
@@ -18,6 +19,9 @@ const reducers = (state = initialState, action) => {
     case SAVE_CURRENT_BOOK:
       console.log('action', action);
       return { ...state, currentBook: action.payload };
+    case SAVE_THUMB:
+      return { ...state, thumb: action.payload };
+
     default:
       return state;
   }

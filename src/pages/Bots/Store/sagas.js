@@ -9,9 +9,15 @@ import {
   getCurrentBook,
   createCollection,
   createMp3,
+  getThumb,
 } from '../../../services/AudioBook';
 
-import { saveAllArticle, saveAllBook, saveCurrentBook } from './actions';
+import {
+  saveAllArticle,
+  saveAllBook,
+  saveCurrentBook,
+  saveThumb,
+} from './actions';
 
 function* getAllArticleEffect(payload, resolve, reject) {
   const response = yield call(getAllArticle, payload);
@@ -95,6 +101,18 @@ function* createMp3Effect(payload, resolve, reject) {
   }
 }
 
+function* getThumbEffect(payload, resolve, reject) {
+  const response = yield call(getThumb, payload);
+
+  if (response) {
+    console.log('response', response);
+    yield put(saveThumb(response));
+    resolve('');
+  } else {
+    reject('Error calling api');
+  }
+}
+
 export {
   getAllArticleEffect,
   getAudioArticleEffect,
@@ -103,4 +121,5 @@ export {
   getCurrentBookEffect,
   createCollectionEffect,
   createMp3Effect,
+  getThumbEffect,
 };

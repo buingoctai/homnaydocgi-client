@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
@@ -15,7 +15,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import GraphicEqIcon from '@material-ui/icons/GraphicEq';
-
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
+import RepeatOneIcon from '@material-ui/icons/RepeatOne';
 import InputPopup from '../InputPopup';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
   },
   nested: {
     paddingLeft: theme.spacing(4),
-    '&:hover': {
-      cursor: 'pointer',
-    },
+    // '&:hover': {
+    //   cursor: 'pointer',
+    // },
   },
   loading__audio__book: {
     display: 'flex',
@@ -44,12 +46,44 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     flexDirection: 'column',
   },
-  add__collection__con: {
+  add__collection__icon: {
     '&:hover': {
       cursor: 'pointer',
     },
   },
   play__btn: {},
+  thumb: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  audio__header: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
+    backgroundColor: '#F1F3F4',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  audio__title: {
+    color: '#0B0B0B',
+    fontWeight: 'bold',
+  },
+  player: {
+    width: '100%',
+    backgroundColor: '#F1F3F4',
+  },
+  removePadding: {
+    '@global': {
+      '.MuiButton-text': {
+        padding: '0px',
+      },
+      '.MuiButton-root': {
+        padding: '0px',
+        minWidth: '0px',
+      },
+    },
+  },
 }));
 
 const AudioBook = (props) => {
@@ -59,24 +93,30 @@ const AudioBook = (props) => {
     id: '',
     name: '',
     url: '',
+    index: null,
   });
+  const [isRepeatOne, setIsRepeatOne] = useState(false);
   const [popupTitle, setPopupTitle] = useState('');
   const {
     visibleList,
     allBook,
     currentBook,
+    thumb,
     isLoadingAudioBook,
     onHandleVisibleBook,
     onCreateCollection,
     onCreateAudio,
   } = props;
+
   const HandleVisibleBook = (id) => {
     onHandleVisibleBook(id);
   };
+
   const handleOpenInputPopup = (title) => () => {
     setOpen(true);
     setPopupTitle(title);
   };
+
   const handleCloseInputPopup = () => {
     setOpen(false);
   };
@@ -91,14 +131,41 @@ const AudioBook = (props) => {
     }
     setOpen(false);
   };
-  const onPlayAudio = (audio) => () => {
-    console.log('onPlayAudio');
-    setAudio(audio);
 
-    var playme = document.getElementById('playme');
-    playme.load();
-    playme.play();
+  const onPlayAudio = (audio) => () => {
+    setAudio(audio);
   };
+  const onNextAudio = () => () => {
+    const nextAudio = currentBook.data[audio.index + 1];
+
+    if (nextAudio) {
+      setAudio({ ...nextAudio, index: audio.index + 1 });
+    } else {
+      const startAudio = currentBook.data[0];
+      setAudio({ ...startAudio, index: 0 });
+    }
+  };
+
+  const onBackAudio = () => () => {
+    const backAudio = currentBook.data[audio.index - 1];
+
+    if (backAudio) {
+      setAudio({ ...backAudio, index: audio.index - 1 });
+    } else {
+      const startAudio = currentBook.data[currentBook.data.length - 1];
+      setAudio({ ...startAudio, index: currentBook.data.length - 1 });
+    }
+  };
+
+  useEffect(() => {
+    const player = document.getElementById('player');
+
+    if (player) {
+      player.load();
+      player.play();
+    }
+  }, [audio]);
+
   return (
     <div>
       <List
@@ -123,11 +190,14 @@ const AudioBook = (props) => {
         className={classes.root}
       >
         <>
-          <ListItem className={classes.add__collection__con}>
-            <ListItemIcon>
-              <a onClick={handleOpenInputPopup('CreateCollection')}>
+          <ListItem className={classes.add__collection__icon}>
+            <ListItemIcon className={classes.removePadding}>
+              <Button
+                onClick={handleOpenInputPopup('CreateCollection')}
+                className={classes.removePadding}
+              >
                 <AddCircleIcon color='primary' />
-              </a>
+              </Button>
             </ListItemIcon>
           </ListItem>
           {allBook.totalRecord > 0 &&
@@ -152,30 +222,56 @@ const AudioBook = (props) => {
                   ) : (
                     <List component='div' disablePadding>
                       {currentBook.data.length > 0 &&
-                        currentBook.data.map((item) => (
-                          <ListItem button className={classes.nested}>
+                        currentBook.data.map((item, index) => (
+                          <ListItem className={classes.nested}>
                             <ListItemIcon>
-                              <GraphicEqIcon />
+                              <StarBorder />
                             </ListItemIcon>
                             <ListItemText primary={item.name} />
 
-                            <a
-                              onClick={onPlayAudio({
-                                id: item.id,
-                                name: item.name,
-                                url: item.url,
-                              })}
-                            >
-                              <div className={classes.play__btn}>
-                                <PlayArrowIcon />
-                              </div>
-                            </a>
+                            <div className={classes.play__btn}>
+                              <Button
+                                onClick={onPlayAudio({
+                                  ...item,
+                                  index,
+                                })}
+                              >
+                                <img
+                                  src={
+                                    thumb[item.id] ||
+                                    'https://img.youtube.com/mqdefault.jpg'
+                                  }
+                                  alt='Paris'
+                                  className={classes.thumb}
+                                />
+                                {audio.id === item.id ? (
+                                  <GraphicEqIcon
+                                    style={{
+                                      position: 'relative',
+                                      color: 'white',
+                                    }}
+                                  />
+                                ) : (
+                                  <PlayArrowIcon
+                                    style={{
+                                      position: 'relative',
+                                      color: 'white',
+                                    }}
+                                  />
+                                )}
+                              </Button>
+                            </div>
                           </ListItem>
                         ))}
-                      <ListItem className={classes.nested}>
-                        <a onClick={handleOpenInputPopup('CreateAudio')}>
+                      <ListItem
+                        className={`${classes.nested} ${classes.removePadding}`}
+                      >
+                        <Button
+                          onClick={handleOpenInputPopup('CreateAudio')}
+                          className={classes.removePadding}
+                        >
                           <AddCircleIcon color='primary' />
-                        </a>
+                        </Button>
                       </ListItem>
                     </List>
                   )}
@@ -186,29 +282,26 @@ const AudioBook = (props) => {
       </List>
       {audio.name && (
         <div className={classes.audio__player}>
-          <div
-            style={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'center',
-              backgroundColor: '#F1F3F4',
-            }}
-          >
-            <span
-              style={{
-                paddingTop: '7px',
-                color: '#0B0B0B',
-                fontWeight: 'bold',
-              }}
-            >
-              {audio.name}
-            </span>
+          <div className={classes.audio__header}>
+            <Button onClick={onBackAudio()}>
+              <SkipPreviousIcon style={{ marginRight: '10px' }} />
+            </Button>
+            <span className={classes.audio__title}>{audio.name}</span>
+            <Button onClick={onNextAudio()}>
+              <SkipNextIcon style={{ marginLeft: '10px' }} />
+            </Button>
+            {/* <Button onClick={onNextAudio()}>
+              <RepeatOneIcon
+                color={isRepeatOne ? 'primary' : 'default'}
+                style={{ marginLeft: '10px' }}
+              />
+            </Button> */}
           </div>
-
           <audio
+            id='player'
             controls='controls'
-            style={{ width: '100%', backgroundColor: '#F1F3F4' }}
-            id='playme'
+            className={classes.player}
+            onEnded={onNextAudio()}
           >
             <source src={audio.url && audio.url} type='audio/mp3' />
           </audio>

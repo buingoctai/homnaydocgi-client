@@ -11,6 +11,7 @@ import {
   asyncGetCurrentBook,
   asyncCreateCollection,
   asyncCreateMp3,
+  asyncGetThumb,
   saveAudioList,
   saveAllBook,
 } from '../../pages/Bots/Store/actions';
@@ -23,6 +24,7 @@ const mapStateToProps = (state) => {
     audioList: readNewReducers.audioList,
     allBook: readNewReducers.allBook,
     currentBook: readNewReducers.currentBook,
+    thumb: readNewReducers.thumb,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -34,6 +36,7 @@ const mapDispatchToProps = (dispatch) => {
     getCurrentBookDispatch: (payload) => asyncGetCurrentBook(payload),
     createCollectionDispatch: (payload) => asyncCreateCollection(payload),
     createMp3Dispatch: (payload) => asyncCreateMp3(payload),
+    getThumbDispatch: (payload) => asyncGetThumb(payload),
     saveAudioListDispatch: (payload) => dispatch(saveAudioList(payload)),
     saveAllBookDispatch: (payload) => dispatch(saveAllBook(payload)),
   };
@@ -109,6 +112,7 @@ export default compose(
         setVisibleList,
         setIsLoadingAudioBook,
         getCurrentBookDispatch,
+        getThumbDispatch,
       } = props;
       const newVisibleList = createBooleanObj(allBook.data);
 
@@ -126,6 +130,7 @@ export default compose(
         .catch(() => {
           setIsLoadingAudioBook(false);
         });
+      getThumbDispatch({ parent: id });
     },
     onCreateCollection: (props) => (text) => {
       console.log('textt', text);
@@ -142,7 +147,12 @@ export default compose(
         .catch((err) => {});
     },
     onCreateAudio: (props) => (text) => {
-      const { visibleList, createMp3Dispatch, getCurrentBookDispatch } = props;
+      const {
+        visibleList,
+        createMp3Dispatch,
+        getCurrentBookDispatch,
+        getThumbDispatch,
+      } = props;
       console.log('visibleList=', visibleList, text);
       let folderId = '';
       for (const [key, value] of Object.entries(visibleList)) {
@@ -154,6 +164,7 @@ export default compose(
         createMp3Dispatch({ id: folderId, url: text })
           .then((res) => {
             getCurrentBookDispatch({ id: folderId });
+            getThumbDispatch({ parent: folderId });
           })
           .catch();
       }

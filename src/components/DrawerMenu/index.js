@@ -1,27 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import MenuIcon from "@material-ui/icons/Menu";
-import RadioIcon from "@material-ui/icons/Radio";
-import SubjectIcon from "@material-ui/icons/Subject";
-import AddToHomeScreenIcon from "@material-ui/icons/AddToHomeScreen";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import Button from "@material-ui/core/Button";
-import { translateUrl, userDataCRUD } from "../../utils/utils";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuIcon from '@material-ui/icons/Menu';
+import RadioIcon from '@material-ui/icons/Radio';
+import SubjectIcon from '@material-ui/icons/Subject';
+import AddToHomeScreenIcon from '@material-ui/icons/AddToHomeScreen';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import Button from '@material-ui/core/Button';
+import { translateUrl, userDataCRUD } from '../../utils/utils';
 const useStyles = makeStyles({
   container: {
-    "@global": {
-      ".MuiPaper-root": {
-        backgroundColor: "#7D7D7D",
+    '@global': {
+      '.MuiPaper-root': {
+        backgroundColor: '#7D7D7D',
       },
-      ".MuiPaper-elevation16": {
-        boxShadow: "none",
+      '.MuiPaper-elevation16': {
+        boxShadow: 'none',
       },
     },
   },
@@ -29,27 +29,27 @@ const useStyles = makeStyles({
     width: 250,
   },
   fullList: {
-    width: "auto",
-    height: "100%",
-    "@global": {
-      ".MuiList-root": {
-        height: "100%",
-        width: "120px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
+    width: 'auto',
+    height: '100%',
+    '@global': {
+      '.MuiList-root': {
+        height: '100%',
+        width: '120px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
       },
-      ".MuiListItem-root": {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
+      '.MuiListItem-root': {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
       },
-      ".MuiListItemIcon-root": {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
+      '.MuiListItemIcon-root': {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
       },
     },
   },
@@ -59,15 +59,15 @@ const DrawerMenu = (props) => {
   const { onSubscribePage } = props;
   const classes = useStyles();
   const [isOpen, setIsOpen] = React.useState(false);
-  userDataCRUD({ action: "EDIT", data: {} });
-  const { subscriptionId = "" } = userDataCRUD({
-    action: "GET",
+  userDataCRUD({ action: 'EDIT', data: {} });
+  const { subscriptionId = '' } = userDataCRUD({
+    action: 'GET',
   });
 
   const toggleDrawer = (open) => (event) => {
     if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -76,10 +76,10 @@ const DrawerMenu = (props) => {
   };
   const determineIcon = (text) => {
     switch (text) {
-      case "Nội dung":
-        return <SubjectIcon color="primary" />;
-      case "Nghe Báo":
-        return <RadioIcon color="primary" />;
+      case 'Nội dung':
+        return <SubjectIcon color='primary' />;
+      case 'Nghe Báo':
+        return <RadioIcon color='primary' />;
       default:
         return null;
     }
@@ -88,16 +88,16 @@ const DrawerMenu = (props) => {
   const list = () => (
     <div
       className={classes.fullList}
-      role="presentation"
+      role='presentation'
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {["Nội dung", "Nghe Báo"].map((text, index) => (
+        {['Nội dung', 'Nghe Báo'].map((text, index) => (
           <ListItem button key={text}>
             <Link
               to={{ pathname: translateUrl(text) }}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: 'none' }}
             >
               <ListItemIcon>{determineIcon(text)}</ListItemIcon>
               <ListItemText>{text}</ListItemText>
@@ -105,17 +105,17 @@ const DrawerMenu = (props) => {
           </ListItem>
         ))}
 
-        <ListItem button key={"text"}>
+        <ListItem button key={'text'}>
           <a
             // style={{ textDecoration: "none" }}
             onClick={onSubscribePage}
-            to=""
+            to=''
           >
             <ListItemIcon>
-              <AddToHomeScreenIcon color="primary" />
+              <AddToHomeScreenIcon color='primary' />
             </ListItemIcon>
-            <ListItemText style={{ color: "#551A8B", textAlign: "center" }}>
-              {subscriptionId ? "Bỏ Theo Dõi" : "Theo Dõi"}
+            <ListItemText style={{ color: '#551A8B', textAlign: 'center' }}>
+              {subscriptionId ? 'Bỏ Theo Dõi' : 'Theo Dõi'}
             </ListItemText>
           </a>
         </ListItem>
@@ -155,14 +155,14 @@ const DrawerMenu = (props) => {
   );
 
   return (
-    <React.Fragment key={"anchor"}>
+    <React.Fragment key={'anchor'}>
       <MenuIcon onClick={toggleDrawer(true)} />
 
       <Drawer
-        anchor="left"
+        anchor='left'
         open={isOpen}
         onClose={toggleDrawer(false)}
-        style={{ paper: { backgroundColor: "red" } }}
+        style={{ paper: { backgroundColor: 'red' } }}
         className={classes.container}
       >
         {list()}

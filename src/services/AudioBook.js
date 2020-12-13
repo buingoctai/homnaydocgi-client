@@ -27,3 +27,10 @@ export const createMp3 = (params) => {
     data: { ...params },
   });
 };
+
+export const getThumb = (params) => {
+  return request(`${process.env.API_BASE}/audio/getThumb`, {
+    method: 'POST',
+    data: { ...params },
+  });
+};

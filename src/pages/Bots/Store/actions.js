@@ -4,6 +4,7 @@ import {
   SAVE_AUDIO_LIST,
   SAVE_ALL_BOOK,
   SAVE_CURRENT_BOOK,
+  SAVE_THUMB,
 } from './constants';
 import {
   getAllArticleEffect,
@@ -13,6 +14,7 @@ import {
   getCurrentBookEffect,
   createCollectionEffect,
   createMp3Effect,
+  getThumbEffect,
 } from './sagas';
 
 const getAllArticle = (payload, resolve, reject) => {
@@ -84,6 +86,17 @@ export const asyncCreateMp3 = (payload) => {
     createMp3(payload, resolve, reject);
   });
 };
+
+const getThumb = (payload, resolve, reject) => {
+  sagaMiddleware.run(getThumbEffect, payload, resolve, reject);
+};
+
+export const asyncGetThumb = (payload) => {
+  return new Promise((resolve, reject) => {
+    getThumb(payload, resolve, reject);
+  });
+};
+
 export const saveAllArticle = (payload) => {
   return {
     type: SAVE_ALL_ARTICLE,
@@ -108,6 +121,13 @@ export const saveAllBook = (payload) => {
 export const saveCurrentBook = (payload) => {
   return {
     type: SAVE_CURRENT_BOOK,
+    payload,
+  };
+};
+
+export const saveThumb = (payload) => {
+  return {
+    type: SAVE_THUMB,
     payload,
   };
 };
