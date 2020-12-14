@@ -1,5 +1,5 @@
-import { SAVE_TOKEN, SAVE_CURRENT_USER } from "./constants";
-import initialState from "./state";
+import { SAVE_TOKEN, SAVE_CURRENT_USER } from './constants';
+import initialState from './state';
 // Reducer
 const reducers = (state = initialState, action) => {
   switch (action.type) {

@@ -1,5 +1,5 @@
-import { SAVE_ALL_POST, SAVE_DETAIL_POST } from "./constants";
-import initialState from "./state";
+import { SAVE_ALL_POST, SAVE_DETAIL_POST } from './constants';
+import initialState from './state';
 
 const reducers = (state = initialState, action) => {
   switch (action.type) {

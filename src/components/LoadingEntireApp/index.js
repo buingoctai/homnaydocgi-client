@@ -16,12 +16,7 @@ const LoadingEntireApp = ({ width, height }) => {
 
   return (
     <div className={classes.container}>
-      <Skeleton
-        variant={'rect'}
-        width={width}
-        height={height}
-        style={{ marginBottom: '5px' }}
-      />
+      <Skeleton variant={'rect'} width={width} height={height} style={{ marginBottom: '5px' }} />
     </div>
   );
 };

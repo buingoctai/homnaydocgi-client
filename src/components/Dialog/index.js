@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import { Alert, AlertTitle } from "@material-ui/lab";
+import React, { useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
-import { DIALOG_CODE } from "../../utils/constants";
+import { DIALOG_CODE } from '../../utils/constants';
 
 const useStyles = makeStyles((theme) => ({
   dialogContainer: {
-    width: "60%",
-    "& > * + *": {
+    width: '60%',
+    '& > * + *': {
       marginTop: theme.spacing(2),
     },
   },
@@ -17,13 +17,10 @@ const useStyles = makeStyles((theme) => ({
 const DraggableDialog = ({ visible = false, content, setDialogContent }) => {
   const classes = useStyles();
   const handleClose = () => {
-    setDialogContent({ visible: false, content: "" });
+    setDialogContent({ visible: false, content: '' });
   };
   useEffect(() => {
-    setTimeout(
-      () => setDialogContent({ visible: false, content: "" }),
-      5000000
-    );
+    setTimeout(() => setDialogContent({ visible: false, content: '' }), 5000000);
   });
 
   return (
@@ -34,16 +31,10 @@ const DraggableDialog = ({ visible = false, content, setDialogContent }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         maxWidth="xs"
-        style={{ width: "90%" }}
+        style={{ width: '90%' }}
       >
-        <DialogContent
-          style={{ backgroundColor: "#E8F4FD", paddingTop: "0px" }}
-        >
-          <Alert
-            severity="info"
-            style={{ padding: "0px 0px" }}
-            onClose={handleClose}
-          >
+        <DialogContent style={{ backgroundColor: '#E8F4FD', paddingTop: '0px' }}>
+          <Alert severity="info" style={{ padding: '0px 0px' }} onClose={handleClose}>
             <AlertTitle>Thông báo</AlertTitle>
             {DIALOG_CODE[content]} — <strong>Xin cảm ơn!</strong>
           </Alert>

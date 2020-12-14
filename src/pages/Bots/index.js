@@ -25,7 +25,7 @@ function TabPanel(props) {
 
   return (
     <div
-      role='tabpanel'
+      role="tabpanel"
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
@@ -159,11 +159,7 @@ const Bots = (props) => {
     <React.Fragment>
       <CssBaseline />
       <Container className={classes.container}>
-        <Header
-          title='HÔM NAY ĐỌC GÌ?'
-          currentUser={userName}
-          postList={postList}
-        />
+        <Header title="HÔM NAY ĐỌC GÌ?" currentUser={userName} postList={postList} />
         <div className={classes.rootWrap}>
           <div className={classes.personalizedUserWrap}>
             {!hidingUserIcon && <AccountCircleIcon className={classes.icon} />}

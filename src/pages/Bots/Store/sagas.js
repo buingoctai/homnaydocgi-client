@@ -1,9 +1,5 @@
 import { call, put } from 'redux-saga/effects';
-import {
-  getAllArticle,
-  getAudioArticle,
-  createAudioArticle,
-} from '../../../services/ReadNew';
+import { getAllArticle, getAudioArticle, createAudioArticle } from '../../../services/ReadNew';
 import {
   getAllBook,
   getCurrentBook,
@@ -12,12 +8,7 @@ import {
   getThumb,
 } from '../../../services/AudioBook';
 
-import {
-  saveAllArticle,
-  saveAllBook,
-  saveCurrentBook,
-  saveThumb,
-} from './actions';
+import { saveAllArticle, saveAllBook, saveCurrentBook, saveThumb } from './actions';
 
 function* getAllArticleEffect(payload, resolve, reject) {
   const response = yield call(getAllArticle, payload);

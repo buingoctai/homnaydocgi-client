@@ -1,5 +1,5 @@
-import React from "react";
-import { contentIntro } from "../../../utils/constants";
+import React from 'react';
+import { contentIntro } from '../../../utils/constants';
 
 const Application = () => {
   return (

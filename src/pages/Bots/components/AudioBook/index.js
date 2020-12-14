@@ -169,11 +169,11 @@ const AudioBook = (props) => {
   return (
     <div>
       <List
-        component='nav'
-        aria-labelledby='nested-list-subheader'
+        component="nav"
+        aria-labelledby="nested-list-subheader"
         subheader={
-          <ListSubheader component='div' id='nested-list-subheader'>
-            <span>Sách Đang Có</span>
+          <ListSubheader component="div" id="nested-list-subheader">
+            <span>Tất cả bộ sưu tập</span>
             <InputPopup
               open={open}
               title={
@@ -196,7 +196,7 @@ const AudioBook = (props) => {
                 onClick={handleOpenInputPopup('CreateCollection')}
                 className={classes.removePadding}
               >
-                <AddCircleIcon color='primary' />
+                <AddCircleIcon color="primary" />
               </Button>
             </ListItemIcon>
           </ListItem>
@@ -205,22 +205,18 @@ const AudioBook = (props) => {
               <>
                 <ListItem button onClick={() => HandleVisibleBook(item.id)}>
                   <ListItemIcon>
-                    <MenuBookIcon color='primary' />
+                    <MenuBookIcon color="primary" />
                   </ListItemIcon>
                   <ListItemText primary={item.name} />
                   {visibleList[item.id] ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
-                <Collapse
-                  in={visibleList[item.id]}
-                  timeout='auto'
-                  unmountOnExit
-                >
+                <Collapse in={visibleList[item.id]} timeout="auto" unmountOnExit>
                   {isLoadingAudioBook ? (
                     <div className={classes.loading__audio__book}>
                       <CircularProgress size={30} />
                     </div>
                   ) : (
-                    <List component='div' disablePadding>
+                    <List component="div" disablePadding>
                       {currentBook.data.length > 0 &&
                         currentBook.data.map((item, index) => (
                           <ListItem className={classes.nested}>
@@ -237,11 +233,8 @@ const AudioBook = (props) => {
                                 })}
                               >
                                 <img
-                                  src={
-                                    thumb[item.id] ||
-                                    'https://img.youtube.com/mqdefault.jpg'
-                                  }
-                                  alt='Paris'
+                                  src={thumb[item.id] || 'https://img.youtube.com/mqdefault.jpg'}
+                                  alt="Paris"
                                   className={classes.thumb}
                                 />
                                 {audio.id === item.id ? (
@@ -263,14 +256,12 @@ const AudioBook = (props) => {
                             </div>
                           </ListItem>
                         ))}
-                      <ListItem
-                        className={`${classes.nested} ${classes.removePadding}`}
-                      >
+                      <ListItem className={`${classes.nested} ${classes.removePadding}`}>
                         <Button
                           onClick={handleOpenInputPopup('CreateAudio')}
                           className={classes.removePadding}
                         >
-                          <AddCircleIcon color='primary' />
+                          <AddCircleIcon color="primary" />
                         </Button>
                       </ListItem>
                     </List>
@@ -297,13 +288,8 @@ const AudioBook = (props) => {
               />
             </Button> */}
           </div>
-          <audio
-            id='player'
-            controls='controls'
-            className={classes.player}
-            onEnded={onNextAudio()}
-          >
-            <source src={audio.url && audio.url} type='audio/mp3' />
+          <audio id="player" controls="controls" className={classes.player} onEnded={onNextAudio()}>
+            <source src={audio.url && audio.url} type="audio/mp3" />
           </audio>
         </div>
       )}

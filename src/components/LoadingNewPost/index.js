@@ -18,11 +18,7 @@ const LoadingNewPost = () => {
   return (
     <div className={classes.container}>
       {status.map((item) => (
-        <Skeleton
-          variant={item.variant}
-          height={item.height}
-          style={{ marginBottom: '5px' }}
-        />
+        <Skeleton variant={item.variant} height={item.height} style={{ marginBottom: '5px' }} />
       ))}
     </div>
   );

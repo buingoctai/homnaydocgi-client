@@ -1,8 +1,8 @@
-import { connect } from "react-redux";
-import { compose, withHandlers, withState, lifecycle } from "recompose";
+import { connect } from 'react-redux';
+import { compose, withHandlers, withState, lifecycle } from 'recompose';
 
-import { saveTokenToCookie } from "../../store/actions";
-import { asyncSubmitUserData } from "./Store/actions";
+import { saveTokenToCookie } from '../../store/actions';
+import { asyncSubmitUserData } from './Store/actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -17,23 +17,15 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default compose(
-  withState("isLoadingBtn", "setIsLoadingBtn", false),
-  withState("isSuccessLogin", "setIsSuccessLogin", false),
-  withState("techLabels", "setTechLabels", []),
-  withState("addLabels", "setAddLabels", []),
-  withState("isChooseTechOptions", "setIsChooseTechOptions", false),
-  withState("isChooseAddOptions", "setIsChooseAddOptions", false),
-  withState("techLabelsChoosing", "setTechLabelsChoosing", [
-    "Back-End",
-    "Front-End",
-    "Mobile",
-  ]), // call api to get labels
-  withState("addLabelsChoosing", "setAddLabelsChoosing", [
-    "Marketing",
-    "Leader",
-    "Sales",
-  ]), // call api to get labels
-  withState("isKeepCurrentPage", "setIsKeepCurrentPage", true),
+  withState('isLoadingBtn', 'setIsLoadingBtn', false),
+  withState('isSuccessLogin', 'setIsSuccessLogin', false),
+  withState('techLabels', 'setTechLabels', []),
+  withState('addLabels', 'setAddLabels', []),
+  withState('isChooseTechOptions', 'setIsChooseTechOptions', false),
+  withState('isChooseAddOptions', 'setIsChooseAddOptions', false),
+  withState('techLabelsChoosing', 'setTechLabelsChoosing', ['Back-End', 'Front-End', 'Mobile']), // call api to get labels
+  withState('addLabelsChoosing', 'setAddLabelsChoosing', ['Marketing', 'Leader', 'Sales']), // call api to get labels
+  withState('isKeepCurrentPage', 'setIsKeepCurrentPage', true),
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
     checkingNavigatePage: (props) => () => {
@@ -48,10 +40,7 @@ export default compose(
 
       if (!isChooseTechOptions && !isChooseAddOptions) {
         setTimeout(
-          () =>
-            setIsKeepCurrentPage(
-              techLabels.length === 0 || addLabels.length === 0
-            ),
+          () => setIsKeepCurrentPage(techLabels.length === 0 || addLabels.length === 0),
           3000
         );
         setTimeout(() => setIsSuccessLogin(true), 5000);
@@ -126,12 +115,7 @@ export default compose(
   }),
   lifecycle({
     componentDidMount() {
-      console.log(
-        "process.env",
-        process.env.API_BASE,
-        process.env.NODE_ENV,
-        process.env.APP_BASE
-      );
+      console.log('process.env', process.env.API_BASE, process.env.NODE_ENV, process.env.APP_BASE);
       window.location.href = `${process.env.APP_BASE}/home`;
     },
   })

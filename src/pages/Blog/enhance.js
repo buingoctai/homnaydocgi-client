@@ -28,8 +28,7 @@ const mapDispatchToProps = (dispatch) => {
     getMainPostsDispatch: (payload) => asyncGetMainPosts(payload),
     getFeaturedPostsDispatch: (payload) => asyncGetFeaturedPosts(payload),
     getAllPostDispatch: (payload) => asyncGetAllPost(payload),
-    suggestSubscribeNotifiByBotDispatch: (payload) =>
-      asyncSuggestSubscribeNotifiByBot(payload),
+    suggestSubscribeNotifiByBotDispatch: (payload) => asyncSuggestSubscribeNotifiByBot(payload),
     saveAllPostDispatch: (payload) => dispatch(saveAllPost(payload)),
     getGetAllTopicDispatch: (payload) => asyncGetAllTopic(payload),
     subscribePageDispatch: (payload) => asyncSubscribePage(payload),
@@ -173,9 +172,7 @@ export default compose(
               })
               .catch();
           })
-          .catch((err) =>
-            console.log('error: %s, code: %s', err.message, err.code)
-          );
+          .catch((err) => console.log('error: %s, code: %s', err.message, err.code));
       });
     },
   }),

@@ -6,20 +6,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 
-export default function InputPopup({
-  open,
-  title,
-  createdText,
-  handleClose,
-  handleCreate,
-}) {
+export default function InputPopup({ open, title, createdText, handleClose, handleCreate }) {
   const [text, setText] = useState('');
   const [disabled, setDisabled] = useState(text ? false : true);
   const [error, setError] = useState('');
   const onChangeText = (value) => {
     setText(value);
-    const isCreatedText =
-      createdText.filter((item) => item.name === value).length > 0;
+    const isCreatedText = createdText.filter((item) => item.name === value).length > 0;
 
     if (isCreatedText) {
       console.log('isCreatedText ten nay da ton tai');
@@ -45,24 +38,19 @@ export default function InputPopup({
       <Dialog
         open={open}
         onClose={onClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id='alert-dialog-title'>{title}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
         <DialogContent>
           <TextField
-            id='standard-basic'
+            id="standard-basic"
             label={error}
             onChange={({ target }) => onChangeText(target.value)}
           />
         </DialogContent>
         <DialogActions>
-          <Button
-            color='primary'
-            autoFocus
-            onClick={handleCreate(text)}
-            disabled={disabled}
-          >
+          <Button color="primary" autoFocus onClick={handleCreate(text)} disabled={disabled}>
             Tạo
           </Button>
         </DialogActions>

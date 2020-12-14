@@ -1,20 +1,15 @@
-import { call, put } from "redux-saga/effects";
+import { call, put } from 'redux-saga/effects';
 
-import { sendMsgViaBot } from "../../../services/Common";
+import { sendMsgViaBot } from '../../../services/Common';
 import {
   getMainPosts,
   getFeaturedPosts,
   getAllPost,
   getDetailPost,
   getAllTopic,
-} from "../../../services/Blog";
-import { subscribePage, unSubscribePage } from "../../../services/Notification";
-import {
-  saveMainPosts,
-  saveFeaturedPosts,
-  saveDetailPost,
-  saveAllTopic,
-} from "./actions";
+} from '../../../services/Blog';
+import { subscribePage, unSubscribePage } from '../../../services/Notification';
+import { saveMainPosts, saveFeaturedPosts, saveDetailPost, saveAllTopic } from './actions';
 
 function* getMainPostsEffect(payload, resolve, reject) {
   const response = yield call(getMainPosts, payload);
@@ -25,7 +20,7 @@ function* getMainPostsEffect(payload, resolve, reject) {
     return;
   }
 
-  reject("Error calling api");
+  reject('Error calling api');
 }
 
 function* getFeaturedPostsEffect(payload, resolve, reject) {
@@ -36,7 +31,7 @@ function* getFeaturedPostsEffect(payload, resolve, reject) {
     resolve();
     return;
   }
-  reject("Error calling api");
+  reject('Error calling api');
 }
 
 function* getAllPostEffect(payload, resolve, reject) {
@@ -46,7 +41,7 @@ function* getAllPostEffect(payload, resolve, reject) {
     resolve(response);
     return;
   }
-  reject("Error calling api");
+  reject('Error calling api');
 }
 
 function* suggestSubscribeNotifiByBotEffect(payload, resolve, reject) {
@@ -56,7 +51,7 @@ function* suggestSubscribeNotifiByBotEffect(payload, resolve, reject) {
     resolve(response);
     return;
   }
-  reject("Error calling api");
+  reject('Error calling api');
 }
 
 function* getDetailPostEffect(payload, resolve, reject) {
@@ -67,7 +62,7 @@ function* getDetailPostEffect(payload, resolve, reject) {
     resolve(response);
     return;
   }
-  reject("Error calling api");
+  reject('Error calling api');
 }
 
 function* getAllTopicEffect(payload, resolve, reject) {
@@ -78,7 +73,7 @@ function* getAllTopicEffect(payload, resolve, reject) {
     resolve(response);
     return;
   }
-  reject("Error calling api");
+  reject('Error calling api');
 }
 
 function* subscribePageEffect(payload, resolve, reject) {
@@ -87,12 +82,12 @@ function* subscribePageEffect(payload, resolve, reject) {
   if (response) {
     resolve(response);
   }
-  reject("Error calling api");
+  reject('Error calling api');
 }
 
 function* unSubscribePageEffect(payload, resolve, reject) {
   yield call(unSubscribePage, payload);
-  resolve("");
+  resolve('');
 }
 
 export {

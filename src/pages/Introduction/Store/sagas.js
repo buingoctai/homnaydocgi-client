@@ -1,5 +1,5 @@
-import { call } from "redux-saga/effects";
-import { submitUserData } from "../../../services/Introduction";
+import { call } from 'redux-saga/effects';
+import { submitUserData } from '../../../services/Introduction';
 
 function* submitUserDataEffect(payload, resolve, reject) {
   const response = yield call(submitUserData, { ...payload });
@@ -7,7 +7,7 @@ function* submitUserDataEffect(payload, resolve, reject) {
   if (response) {
     resolve(response);
   } else {
-    reject("Error calling api");
+    reject('Error calling api');
   }
 }
 

@@ -1,5 +1,5 @@
-import { connect } from "react-redux";
-import { compose, withHandlers, withState, lifecycle } from "recompose";
+import { connect } from 'react-redux';
+import { compose, withHandlers, withState, lifecycle } from 'recompose';
 
 import {
   asyncSubmitPost,
@@ -8,10 +8,10 @@ import {
   asyncUpdatePosts,
   asyncGetDetailPost,
   asyncSendNotification,
-} from "./Store/actions";
+} from './Store/actions';
 
 // import { asyncGetDetailPost } from "../Blog/Store/actions";
-import moment from "moment";
+import moment from 'moment';
 
 const mapStateToProps = (state) => {
   const { adminReducers } = state;
@@ -31,24 +31,18 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 export default compose(
-  withState("articleData", "setArticleData", {
-    author: "",
-    title: "",
-    content: "",
-    topic: "",
+  withState('articleData', 'setArticleData', {
+    author: '',
+    title: '',
+    content: '',
+    topic: '',
     submitDate: moment(),
-    imageUrl: "",
+    imageUrl: '',
   }),
-  withState("selected", "setSelected", []),
+  withState('selected', 'setSelected', []),
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
-    onUpdatingContent: (props) => ({
-      Author,
-      Title,
-      Topic,
-      SubmitDate,
-      ImageUrl,
-    }) => {
+    onUpdatingContent: (props) => ({ Author, Title, Topic, SubmitDate, ImageUrl }) => {
       const { detailPost, setArticleData } = props;
 
       setArticleData({
@@ -89,16 +83,16 @@ export default compose(
             alert(message);
             // sendNotificationDispatch({ title: articleData.title });
             setArticleData({
-              author: "",
-              title: "",
-              content: "",
-              topic: "",
-              submitDate: "",
-              imageUrl: "",
+              author: '',
+              title: '',
+              content: '',
+              topic: '',
+              submitDate: '',
+              imageUrl: '',
             });
             getAllPostDispatch({
               paging: { pageIndex: 1, pageSize: 5 },
-              orderList: { orderBy: "SubmitDate", orderType: "DESC" },
+              orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
             })
               .then(() => {
                 // setIsLoadingPage(false);
@@ -113,19 +107,19 @@ export default compose(
       } else {
         updatePostsDispatch({ items: [...selected], data: { ...articleData } })
           .then(() => {
-            console.log("update xong r");
+            console.log('update xong r');
             setSelected([]);
             setArticleData({
-              author: "",
-              title: "",
-              content: "",
-              topic: "",
-              submitDate: "",
-              imageUrl: "",
+              author: '',
+              title: '',
+              content: '',
+              topic: '',
+              submitDate: '',
+              imageUrl: '',
             });
             getAllPostDispatch({
               paging: { pageIndex: 1, pageSize: 5 },
-              orderList: { orderBy: "SubmitDate", orderType: "DESC" },
+              orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
             })
               .then(() => {
                 // setIsLoadingPage(false);
@@ -145,7 +139,7 @@ export default compose(
           setSelected([]);
           getAllPostDispatch({
             paging: { pageIndex: 1, pageSize: 5 },
-            orderList: { orderBy: "SubmitDate", orderType: "DESC" },
+            orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
           })
             .then(() => {
               // setIsLoadingPage(false);
@@ -158,7 +152,7 @@ export default compose(
           setSelected([]);
           getAllPostDispatch({
             paging: { pageIndex: 1, pageSize: 5 },
-            orderList: { orderBy: "SubmitDate", orderType: "DESC" },
+            orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
           })
             .then(() => {
               // setIsLoadingPage(false);
@@ -169,26 +163,11 @@ export default compose(
         });
     },
     onEditArticle: (props) => (selected) => {
-      const {
-        allPost,
-        setArticleData,
-        getDetailPostDispatch,
-        onUpdatingContent,
-      } = props;
-      const selectedRows = allPost.data.filter((item) =>
-        selected.includes(item.Id)
-      );
+      const { allPost, setArticleData, getDetailPostDispatch, onUpdatingContent } = props;
+      const selectedRows = allPost.data.filter((item) => selected.includes(item.Id));
 
       if (selected.length === 1) {
-        const {
-          Id,
-          Author,
-          Title,
-          Brief,
-          Topic,
-          SubmitDate,
-          ImageUrl,
-        } = selectedRows[0];
+        const { Id, Author, Title, Brief, Topic, SubmitDate, ImageUrl } = selectedRows[0];
         getDetailPostDispatch({ id: Id })
           .then(() => {
             onUpdatingContent({ Author, Title, Topic, SubmitDate, ImageUrl });
@@ -205,12 +184,12 @@ export default compose(
           });
       } else {
         setArticleData({
-          author: "",
-          title: "",
-          content: "",
-          topic: "",
-          submitDate: "",
-          imageUrl: "",
+          author: '',
+          title: '',
+          content: '',
+          topic: '',
+          submitDate: '',
+          imageUrl: '',
         });
       }
     },
@@ -221,7 +200,7 @@ export default compose(
 
       getAllPostDispatch({
         paging: { pageIndex: 1, pageSize: 5 },
-        orderList: { orderBy: "SubmitDate", orderType: "DESC" },
+        orderList: { orderBy: 'SubmitDate', orderType: 'DESC' },
       })
         .then(() => {
           // setIsLoadingPage(false);

@@ -1,11 +1,11 @@
-import { sagaMiddleware } from "../../../store/actions";
+import { sagaMiddleware } from '../../../store/actions';
 import {
   SAVE_MAIN_POSTS,
   SAVE_FEATURED_POSTS,
   SAVE_ALL_POST,
   SAVE_DETAIL_POST,
   SAVE_ALL_TOPIC,
-} from "./constants";
+} from './constants';
 import {
   getMainPostsEffect,
   getFeaturedPostsEffect,
@@ -15,7 +15,7 @@ import {
   getAllTopicEffect,
   subscribePageEffect,
   unSubscribePageEffect,
-} from "./sagas";
+} from './sagas';
 
 const getMainPosts = (payload, resolve, reject) => {
   sagaMiddleware.run(getMainPostsEffect, payload, resolve, reject);
@@ -48,12 +48,7 @@ export const asyncGetAllPost = (payload) => {
 };
 
 const suggestSubscribeNotifiByBot = (payload, resolve, reject) => {
-  sagaMiddleware.run(
-    suggestSubscribeNotifiByBotEffect,
-    payload,
-    resolve,
-    reject
-  );
+  sagaMiddleware.run(suggestSubscribeNotifiByBotEffect, payload, resolve, reject);
 };
 export const asyncSuggestSubscribeNotifiByBot = (payload) => {
   return new Promise((resolve, reject) => {

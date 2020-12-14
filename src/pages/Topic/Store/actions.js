@@ -1,10 +1,6 @@
-import { sagaMiddleware } from "../../../store/actions";
-import { SAVE_ALL_POST } from "./constants";
-import {
-  getAllPostEffect,
-  searchArticlesEffect,
-  getSavedPostsEffect,
-} from "./sagas";
+import { sagaMiddleware } from '../../../store/actions';
+import { SAVE_ALL_POST } from './constants';
+import { getAllPostEffect, searchArticlesEffect, getSavedPostsEffect } from './sagas';
 
 const getAllPost = (payload, resolve, reject) => {
   sagaMiddleware.run(getAllPostEffect, payload, resolve, reject);

@@ -1,5 +1,5 @@
-import { sagaMiddleware } from "../../../store/actions";
-import { submitUserDataEffect } from "./sagas";
+import { sagaMiddleware } from '../../../store/actions';
+import { submitUserDataEffect } from './sagas';
 
 const submitUserData = (payload, resolve, reject) => {
   sagaMiddleware.run(submitUserDataEffect, payload, resolve, reject);

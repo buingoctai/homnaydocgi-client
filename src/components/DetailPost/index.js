@@ -40,8 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   small_grid_wrap: {
     width: (props) => (props.is_maxWidth_500px ? '130%' : '60%'),
-    padding: (props) =>
-      props.is_maxWidth_500px ? '60px 72px 10px 72px' : 'none',
+    padding: (props) => (props.is_maxWidth_500px ? '60px 72px 10px 72px' : 'none'),
   },
   item__grid__wrap: {
     height: '100%',
@@ -105,7 +104,7 @@ export default function DetailPost(props) {
   });
 
   return (
-    <div className={classes.container} id='detailContainer'>
+    <div className={classes.container} id="detailContainer">
       <Grid
         container
         className={
@@ -115,15 +114,10 @@ export default function DetailPost(props) {
         }
         onBlur={() => {}}
       >
-        <Grid
-          item
-          xs={12}
-          className={classes.item__grid__wrap}
-          key='itemGridWrap'
-        >
+        <Grid item xs={12} className={classes.item__grid__wrap} key="itemGridWrap">
           {isOpenDetaiContainer && (
             <Paper className={classes.title__wrap}>
-              <Typography variant='body2' style={{ cursor: 'pointer' }}>
+              <Typography variant="body2" style={{ cursor: 'pointer' }}>
                 <Button onClick={onHandleOpenDetailContainer}>
                   <ClearIcon />
                 </Button>
@@ -131,14 +125,9 @@ export default function DetailPost(props) {
             </Paper>
           )}
 
-          <Paper className={classes.paper__wrap} key='itemGridWrap'>
+          <Paper className={classes.paper__wrap} key="itemGridWrap">
             <div className={classes.title__bookmark__wrap}>
-              <Typography
-                variant='h6'
-                color='primary'
-                key='title'
-                style={{ flexGrow: '1' }}
-              >
+              <Typography variant="h6" color="primary" key="title" style={{ flexGrow: '1' }}>
                 {showingPost.Title}
               </Typography>
 
@@ -159,9 +148,9 @@ export default function DetailPost(props) {
               <>
                 <Typography
                   paragraph={true}
-                  align='justify'
-                  color='textPrimary'
-                  key='subContent'
+                  align="justify"
+                  color="textPrimary"
+                  key="subContent"
                   className={classes.content}
                 >
                   {newContent.length > 0 &&
@@ -175,24 +164,15 @@ export default function DetailPost(props) {
                 <div>
                   <img
                     src={showingPost.ImageUrl}
-                    alt='Ảnh'
-                    style={
-                      responsiveObj.is_maxWidth_500px
-                        ? { width: '70%' }
-                        : { width: '30%' }
-                    }
+                    alt="Ảnh"
+                    style={responsiveObj.is_maxWidth_500px ? { width: '70%' } : { width: '30%' }}
                   />
                 </div>
               </>
             )}
             <br />
             <br />
-            <Typography
-              variant='h6'
-              color='textSecondary'
-              align='left'
-              key='author'
-            >
+            <Typography variant="h6" color="textSecondary" align="left" key="author">
               {`Nguồn: ${showingPost.Author}`}
             </Typography>
           </Paper>

@@ -1,36 +1,31 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import { Alert, AlertTitle } from "@material-ui/lab";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Button from "@material-ui/core/Button";
-import DialogActions from "@material-ui/core/DialogActions";
-import TextField from "@material-ui/core/TextField";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
+import DialogActions from '@material-ui/core/DialogActions';
+import TextField from '@material-ui/core/TextField';
 //import { DIALOG_CODE } from "../../utils/constants";
-import { translatePostGroupTitle } from "srcRoot/utils/utils";
+import { translatePostGroupTitle } from 'srcRoot/utils/utils';
 
 const useStyles = makeStyles((theme) => ({
   dialogContainer: {
-    width: "60%",
-    "& > * + *": {
+    width: '60%',
+    '& > * + *': {
       marginTop: theme.spacing(2),
     },
   },
 }));
-const TopicOption = ({
-  visible = false,
-  setIsOpenChoseTopic,
-  allTopic,
-  onGetFeaturedTopic,
-}) => {
+const TopicOption = ({ visible = false, setIsOpenChoseTopic, allTopic, onGetFeaturedTopic }) => {
   const classes = useStyles();
   const [selectedTopics, setSelectedTopics] = useState([]);
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const onOK = () => {
     setIsOpenChoseTopic(false);
     onGetFeaturedTopic([...selectedTopics], name);
@@ -58,18 +53,16 @@ const TopicOption = ({
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         maxWidth="xs"
-        style={{ width: "90%" }}
+        style={{ width: '90%' }}
       >
-        <DialogContent
-          style={{ backgroundColor: "#E8F4FD", paddingTop: "0px" }}
-        >
+        <DialogContent style={{ backgroundColor: '#E8F4FD', paddingTop: '0px' }}>
           <Alert
             severity="info"
-            style={{ padding: "0px 0px" }}
+            style={{ padding: '0px 0px' }}
             //onClose={handleClose}
           >
             <AlertTitle>Thông báo</AlertTitle>
-            <div style={{ display: "flex" }}>
+            <div style={{ display: 'flex' }}>
               <FormControl component="fieldset" className={classes.formControl}>
                 <FormLabel component="legend">Chủ đề bạn quan tâm</FormLabel>
                 <TextField
@@ -80,8 +73,8 @@ const TopicOption = ({
                   value={name}
                   autoFocus
                   error
-                  id={name ? "standard-basic" : "standard-error"}
-                  label={name ? "Tên bạn" : "Cho tôi biết tên bạn"}
+                  id={name ? 'standard-basic' : 'standard-error'}
+                  label={name ? 'Tên bạn' : 'Cho tôi biết tên bạn'}
                 />
                 <FormGroup>
                   {allTopic.length > 0 &&
@@ -112,11 +105,7 @@ const TopicOption = ({
           <Button onClick={onDefault} color="primary" autoFocus>
             Mặc định
           </Button>
-          <Button
-            onClick={onOK}
-            color="primary"
-            disabled={!selectedTopics.length || !name}
-          >
+          <Button onClick={onOK} color="primary" disabled={!selectedTopics.length || !name}>
             Chọn
           </Button>
         </DialogActions>

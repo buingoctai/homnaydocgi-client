@@ -1,5 +1,5 @@
-import { sagaMiddleware } from "../../../store/actions";
-import { SAVE_ALL_POST, SAVE_DETAIL_POST } from "./constants";
+import { sagaMiddleware } from '../../../store/actions';
+import { SAVE_ALL_POST, SAVE_DETAIL_POST } from './constants';
 import {
   submitPosteEffect,
   getAllPostEffect,
@@ -7,7 +7,7 @@ import {
   updatePostsEffect,
   getDetailPostEffect,
   sendNotificationEffect,
-} from "./sagas";
+} from './sagas';
 
 const submitPost = (payload, resolve, reject) => {
   sagaMiddleware.run(submitPosteEffect, payload, resolve, reject);

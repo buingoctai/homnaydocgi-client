@@ -1,10 +1,6 @@
-import createSagaMiddleware from "redux-saga";
-import {
-  saveTokenToCookieEffect,
-  authencationEffect,
-  getProfileEffect,
-} from "./sagas";
-import { SAVE_CURRENT_USER, SAVE_TOKEN } from "./constants";
+import createSagaMiddleware from 'redux-saga';
+import { saveTokenToCookieEffect, authencationEffect, getProfileEffect } from './sagas';
+import { SAVE_CURRENT_USER, SAVE_TOKEN } from './constants';
 
 export const sagaMiddleware = createSagaMiddleware();
 

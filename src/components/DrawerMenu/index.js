@@ -65,10 +65,7 @@ const DrawerMenu = (props) => {
   });
 
   const toggleDrawer = (open) => (event) => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
@@ -77,9 +74,9 @@ const DrawerMenu = (props) => {
   const determineIcon = (text) => {
     switch (text) {
       case 'Nội dung':
-        return <SubjectIcon color='primary' />;
+        return <SubjectIcon color="primary" />;
       case 'Nghe Báo':
-        return <RadioIcon color='primary' />;
+        return <RadioIcon color="primary" />;
       default:
         return null;
     }
@@ -88,17 +85,14 @@ const DrawerMenu = (props) => {
   const list = () => (
     <div
       className={classes.fullList}
-      role='presentation'
+      role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
       <List>
         {['Nội dung', 'Nghe Báo'].map((text, index) => (
           <ListItem button key={text}>
-            <Link
-              to={{ pathname: translateUrl(text) }}
-              style={{ textDecoration: 'none' }}
-            >
+            <Link to={{ pathname: translateUrl(text) }} style={{ textDecoration: 'none' }}>
               <ListItemIcon>{determineIcon(text)}</ListItemIcon>
               <ListItemText>{text}</ListItemText>
             </Link>
@@ -109,10 +103,10 @@ const DrawerMenu = (props) => {
           <a
             // style={{ textDecoration: "none" }}
             onClick={onSubscribePage}
-            to=''
+            to=""
           >
             <ListItemIcon>
-              <AddToHomeScreenIcon color='primary' />
+              <AddToHomeScreenIcon color="primary" />
             </ListItemIcon>
             <ListItemText style={{ color: '#551A8B', textAlign: 'center' }}>
               {subscriptionId ? 'Bỏ Theo Dõi' : 'Theo Dõi'}
@@ -159,7 +153,7 @@ const DrawerMenu = (props) => {
       <MenuIcon onClick={toggleDrawer(true)} />
 
       <Drawer
-        anchor='left'
+        anchor="left"
         open={isOpen}
         onClose={toggleDrawer(false)}
         style={{ paper: { backgroundColor: 'red' } }}

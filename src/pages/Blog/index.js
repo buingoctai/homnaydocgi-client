@@ -115,11 +115,7 @@ const Blog = (props) => {
   } = props;
 
   const data = {
-    labels: [
-      'Kiến thức chuyên môn',
-      'Kiến thức ngoài chuyên môn',
-      'Kỹ năng mềm',
-    ],
+    labels: ['Kiến thức chuyên môn', 'Kiến thức ngoài chuyên môn', 'Kỹ năng mềm'],
     datasets: [
       {
         data: [500, 300, 100],
@@ -136,7 +132,7 @@ const Blog = (props) => {
       <CssBaseline />
       <Container className={classes.container}>
         <Header
-          title='HÔM NAY ĐỌC GÌ?'
+          title="HÔM NAY ĐỌC GÌ?"
           currentUser={userName}
           postList={postList}
           setIsOpenNotification={setIsOpenNotification}
@@ -177,8 +173,8 @@ const Blog = (props) => {
             />
             {!responsiveObj.is_maxWidth_500px && (
               <AuthorPost
-                type='image'
-                title='Các khái niệm mới'
+                type="image"
+                title="Các khái niệm mới"
                 data={AUTHOR_LIST.image}
                 navigateTime={3000}
                 responsiveObj={responsiveObj}
@@ -186,8 +182,8 @@ const Blog = (props) => {
             )}
             {!responsiveObj.is_maxWidth_500px && (
               <AuthorPost
-                type='infor'
-                title='Chuyên gia'
+                type="infor"
+                title="Chuyên gia"
                 data={AUTHOR_LIST.author}
                 navigateTime={1500}
                 responsiveObj={responsiveObj}
@@ -195,13 +191,9 @@ const Blog = (props) => {
             )}
           </div>
           <div className={classes.featuredContent}>
-            <Grid
-              container
-              spacing={4}
-              className={`${classes.featureGrid} ${classes.width2Col}`}
-            >
+            <Grid container spacing={4} className={`${classes.featureGrid} ${classes.width2Col}`}>
               <FeaturedPost
-                key='featured post'
+                key="featured post"
                 post={featuredPosts}
                 isLoadingPage={isLoadingPage}
                 responsiveObj={responsiveObj}
@@ -213,7 +205,7 @@ const Blog = (props) => {
 
           {!isLoadingPage && (
             <Grid container spacing={5} className={classes.mainGrid}>
-              <Main title='Tất cả' />
+              <Main title="Tất cả" />
               <PostGrid
                 posts={allPost.data}
                 totalRecord={Math.ceil(allPost.totalRecord / 3)}
@@ -243,7 +235,7 @@ const Blog = (props) => {
         {/*-----------------------------------Nhóm thông báo-----------------------------------------------*/}
       </Container>
       {!isLoadingPage && (
-        <Footer description='Tham gia cùng đội phát triển sản phẩm - Liên hệ Bùi Ngọc Tài Zalo 0983 053 600' />
+        <Footer description="Tham gia cùng đội phát triển sản phẩm - Liên hệ Bùi Ngọc Tài Zalo 0983 053 600" />
       )}
     </React.Fragment>
   );

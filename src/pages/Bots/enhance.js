@@ -52,12 +52,7 @@ export default compose(
 
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
-    onClickListenArticle: (props) => ({
-      id,
-      content,
-      setCurrentAudio,
-      setIsLoading,
-    }) => {
+    onClickListenArticle: (props) => ({ id, content, setCurrentAudio, setIsLoading }) => {
       const {
         audioList,
         getAudioArticleDispatch,
@@ -134,12 +129,7 @@ export default compose(
     },
     onCreateCollection: (props) => (text) => {
       console.log('textt', text);
-      const {
-        allBook,
-        saveAllBookDispatch,
-        createCollectionDispatch,
-        getAllBookDispatch,
-      } = props;
+      const { allBook, saveAllBookDispatch, createCollectionDispatch, getAllBookDispatch } = props;
       createCollectionDispatch({ name: text })
         .then((res) => {
           getAllBookDispatch({ searchTxt: '' });
@@ -147,12 +137,7 @@ export default compose(
         .catch((err) => {});
     },
     onCreateAudio: (props) => (text) => {
-      const {
-        visibleList,
-        createMp3Dispatch,
-        getCurrentBookDispatch,
-        getThumbDispatch,
-      } = props;
+      const { visibleList, createMp3Dispatch, getCurrentBookDispatch, getThumbDispatch } = props;
       console.log('visibleList=', visibleList, text);
       let folderId = '';
       for (const [key, value] of Object.entries(visibleList)) {

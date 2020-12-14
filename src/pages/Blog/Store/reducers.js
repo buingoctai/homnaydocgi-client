@@ -4,8 +4,8 @@ import {
   SAVE_ALL_POST,
   SAVE_DETAIL_POST,
   SAVE_ALL_TOPIC,
-} from "./constants";
-import initialState from "./state";
+} from './constants';
+import initialState from './state';
 
 const reducers = (state = initialState, action) => {
   switch (action.type) {

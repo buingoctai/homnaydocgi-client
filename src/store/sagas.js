@@ -1,9 +1,9 @@
-import { call, put } from "redux-saga/effects";
-import { COOKIE_NAMES } from "../utils/constants";
-import { setCookie } from "../utils/utils";
+import { call, put } from 'redux-saga/effects';
+import { COOKIE_NAMES } from '../utils/constants';
+import { setCookie } from '../utils/utils';
 
-import { authencationUser, getProfile } from "../services/User";
-import { saveToken, saveCurrentUser } from "./actions";
+import { authencationUser, getProfile } from '../services/User';
+import { saveToken, saveCurrentUser } from './actions';
 
 function* saveTokenToCookieEffect(payload) {
   setCookie(COOKIE_NAMES.ACCESS_TOKEN, payload, 1);
@@ -16,7 +16,7 @@ function* authencationEffect(payload, resolve, reject) {
   if (response) {
     resolve(response);
   } else {
-    reject("Error calling api");
+    reject('Error calling api');
   }
 }
 
@@ -28,7 +28,7 @@ function* getProfileEffect(payload, resolve, reject) {
     yield put(saveCurrentUser(UserName));
     resolve(response);
   } else {
-    reject("Error calling api");
+    reject('Error calling api');
   }
 }
 export { saveTokenToCookieEffect, authencationEffect, getProfileEffect };

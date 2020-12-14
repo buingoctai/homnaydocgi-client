@@ -1,22 +1,22 @@
-import request from "../utils/request";
+import request from '../utils/request';
 
 export const submitPost = (param) => {
   return request(`${process.env.API_BASE}/admin/submitPost`, {
-    method: "POST",
+    method: 'POST',
     data: { ...param },
   });
 };
 
 export const deletePosts = (param) => {
   return request(`${process.env.API_BASE}/admin/deletePosts`, {
-    method: "POST",
+    method: 'POST',
     data: { ...param },
   });
 };
 
 export const updatePosts = (param) => {
   return request(`${process.env.API_BASE}/admin/updatePosts`, {
-    method: "POST",
+    method: 'POST',
     data: { ...param },
   });
 };

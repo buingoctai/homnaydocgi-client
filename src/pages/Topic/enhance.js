@@ -1,14 +1,10 @@
-import { connect } from "react-redux";
-import { compose, withHandlers, withState, lifecycle } from "recompose";
-import OpenDetaiPostHandler from "srcRoot/components/HOC/OpenDetaiPostHandler";
-import UserDataHandler from "srcRoot/components/HOC/UserDataHandler";
+import { connect } from 'react-redux';
+import { compose, withHandlers, withState, lifecycle } from 'recompose';
+import OpenDetaiPostHandler from 'srcRoot/components/HOC/OpenDetaiPostHandler';
+import UserDataHandler from 'srcRoot/components/HOC/UserDataHandler';
 
-import { userDataCRUD } from "srcRoot/utils/utils";
-import {
-  asyncGetAllPost,
-  asyncSearchArticles,
-  asyncGetSavedPosts,
-} from "./Store/actions";
+import { userDataCRUD } from 'srcRoot/utils/utils';
+import { asyncGetAllPost, asyncSearchArticles, asyncGetSavedPosts } from './Store/actions';
 
 const mapDispatchToProps = () => {
   return {
@@ -20,16 +16,12 @@ const mapDispatchToProps = () => {
 export default compose(
   UserDataHandler,
   OpenDetaiPostHandler,
-  withState("searchingTxt", "setSearchingTxt", ""),
-  withState("isShowPaging", "setIsShowPaging", true),
+  withState('searchingTxt', 'setSearchingTxt', ''),
+  withState('isShowPaging', 'setIsShowPaging', true),
   connect(null, mapDispatchToProps),
   withHandlers({
     onSearchArticle: (props) => (searchTxt) => {
-      const {
-        searchArticlesDispatch,
-        setSearchingTxt,
-        setIsSavedPostsStatus,
-      } = props;
+      const { searchArticlesDispatch, setSearchingTxt, setIsSavedPostsStatus } = props;
 
       setIsSavedPostsStatus(false);
       setSearchingTxt(searchTxt);
@@ -40,8 +32,8 @@ export default compose(
   }),
   lifecycle({
     componentDidMount() {
-      window.removeEventListener("scroll", this.onScroll, false);
-      const { name = "", postList = [] } = userDataCRUD({ action: "GET" });
+      window.removeEventListener('scroll', this.onScroll, false);
+      const { name = '', postList = [] } = userDataCRUD({ action: 'GET' });
 
       this.props.setUserName(name);
       this.props.setPostList([...postList]);

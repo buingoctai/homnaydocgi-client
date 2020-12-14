@@ -1,25 +1,25 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import PostWrap from "../../../../components/PostWrap";
-import Paging from "../../../../components/Pagination";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import PostWrap from '../../../../components/PostWrap';
+import Paging from '../../../../components/Pagination';
 
 const useStyles = makeStyles((theme) => ({
   totalContentLoadingWrap: {
-    height: "100%",
-    width: "100%",
-    marginTop: "200px",
-    marginBottom: "200px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    height: '100%',
+    width: '100%',
+    marginTop: '200px',
+    marginBottom: '200px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   loadingMessage: {
-    display: "flex",
-    justifyContent: "center",
-    fontSize: "20px",
-    fontWeight: "bold",
+    display: 'flex',
+    justifyContent: 'center',
+    fontSize: '20px',
+    fontWeight: 'bold',
   },
   formControl: {
     margin: theme.spacing(1),
@@ -46,10 +46,7 @@ const ReadNews = (props) => {
       {totalRecord === 0 ? (
         <div className={classes.totalContentLoadingWrap}>
           <span className={classes.loadingMessage}>Đang tải bài viết</span>
-          <LinearProgress
-            color="primary"
-            style={{ height: "3px", width: "20%" }}
-          />
+          <LinearProgress color="primary" style={{ height: '3px', width: '20%' }} />
         </div>
       ) : (
         <>

@@ -40,34 +40,27 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function MainFeaturedPost(props) {
-  const {
-    post,
-    isLoadingPage,
-    responsiveObj,
-    onHandleOpenDetailContainer,
-  } = props;
+  const { post, isLoadingPage, responsiveObj, onHandleOpenDetailContainer } = props;
   const classes = useStyles({ ...responsiveObj });
 
   return (
     <div className={classes.container}>
       <a onClick={() => onHandleOpenDetailContainer(post.Id)}>
-        <span
-          style={{ fontSize: '20px', fontWeight: 'bold', color: '#551A99' }}
-        >
+        <span style={{ fontSize: '20px', fontWeight: 'bold', color: '#551A99' }}>
           Nội dung mới nhất
         </span>
         {isLoadingPage ? (
-          <LoadingEntireApp width='200px' height='170px' />
+          <LoadingEntireApp width="200px" height="170px" />
         ) : (
           <>
             <div className={classes.image__wrap}>
-              <img src={post.ImageUrl} width='200px' height='170px' alt='' />
+              <img src={post.ImageUrl} width="200px" height="170px" alt="" />
             </div>
             <div className={classes.title__wrap}>
               <Typography
-                component='h6'
-                variant='h3'
-                color='inherit'
+                component="h6"
+                variant="h3"
+                color="inherit"
                 gutterBottom
                 className={classes.title}
               >

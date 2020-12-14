@@ -112,34 +112,25 @@ const PostGrid = (props) => {
           {newColumnDataList.length > 0 &&
             newColumnDataList.map((item, index) => (
               <GridList
-                cellHeight='auto'
+                cellHeight="auto"
                 className={classes.gridListContainer}
                 cols={1}
                 spacing={20}
               >
                 {item.map((item, index) => (
-                  <GridListTile
-                    cols={1}
-                    rows={1}
-                    className={classes.item__wrap}
-                    key={index}
-                  >
+                  <GridListTile cols={1} rows={1} className={classes.item__wrap} key={index}>
                     {item.isSkeleton ? (
                       <LoadingNewPost />
                     ) : (
                       <a onClick={() => onHandleOpenDetailContainer(item.Id)}>
-                        <Paper variant='outlined'>
-                          <Typography
-                            variant='h6'
-                            align='justify'
-                            className={classes.title}
-                          >
+                        <Paper variant="outlined">
+                          <Typography variant="h6" align="justify" className={classes.title}>
                             {item.Title}
                           </Typography>
                           <Typography
                             paragraph={true}
-                            align='justify'
-                            color='textPrimary'
+                            align="justify"
+                            color="textPrimary"
                             className={classes.brief}
                           >
                             {item && `${item.Brief} [...]`}

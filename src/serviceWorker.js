@@ -1,17 +1,14 @@
 export function register() {
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function () {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
       navigator.serviceWorker.register(`./sw.js`).then(
         function (registration) {
           // Registration was successful
-          console.log(
-            "ServiceWorker registration successful with scope: ",
-            registration.scope
-          );
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
         },
         function (err) {
           // registration failed :(
-          console.log("ServiceWorker registration failed: ", err);
+          console.log('ServiceWorker registration failed: ', err);
         }
       );
     });
@@ -19,7 +16,7 @@ export function register() {
 }
 
 export function unregister() {
-  if ("serviceWorker" in navigator) {
+  if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready
       .then((registration) => {
         registration.unregister();
@@ -32,7 +29,7 @@ export function unregister() {
 
 // Ask User Permission
 const pushServerPublicKey =
-  "BIN2Jc5Vmkmy-S3AUrcMlpKxJpLeVRAfu9WBqUbJ70SJOCWGCGXKY-Xzyh7HDr6KbRDGYHjqZ06OcS3BjD7uAm8";
+  'BIN2Jc5Vmkmy-S3AUrcMlpKxJpLeVRAfu9WBqUbJ70SJOCWGCGXKY-Xzyh7HDr6KbRDGYHjqZ06OcS3BjD7uAm8';
 
 export async function askUserPermission() {
   return await Notification.requestPermission();
@@ -61,5 +58,5 @@ export function getUserSubscription() {
 }
 
 export function isPushNotificationSupported() {
-  return "serviceWorker" in navigator && "PushManager" in window;
+  return 'serviceWorker' in navigator && 'PushManager' in window;
 }

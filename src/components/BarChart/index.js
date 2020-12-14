@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // import {
 //   CartesianGrid,
 //   XAxis,
@@ -12,32 +12,32 @@ import React from "react";
 const Chart = () => {
   const data = [
     {
-      name: "Quản trị",
-      "Lượt Xem": 2780,
+      name: 'Quản trị',
+      'Lượt Xem': 2780,
     },
     {
-      name: "Kỹ năng mềm",
-      "Lượt Xem": 2785,
+      name: 'Kỹ năng mềm',
+      'Lượt Xem': 2785,
     },
     {
-      name: "Công nghệ",
-      "Lượt Xem": 4000,
+      name: 'Công nghệ',
+      'Lượt Xem': 4000,
     },
     {
-      name: "Tâm lý",
-      "Lượt Xem": 3000,
+      name: 'Tâm lý',
+      'Lượt Xem': 3000,
     },
     {
-      name: "Triết",
-      "Lượt Xem": 2000,
+      name: 'Triết',
+      'Lượt Xem': 2000,
     },
     {
-      name: "Xã hội",
-      "Lượt Xem": 2790,
+      name: 'Xã hội',
+      'Lượt Xem': 2790,
     },
     {
-      name: "Thể thao",
-      "Lượt Xem": 2720,
+      name: 'Thể thao',
+      'Lượt Xem': 2720,
     },
   ];
   return (

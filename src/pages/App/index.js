@@ -1,14 +1,14 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
-import Introduction from "../Introduction";
-import Blog from "../Blog";
-import Topic from "../Topic";
-import Crawler from "../Crawler";
-import Bots from "../Bots";
-import Admin from "../Admin";
-import Exception from "../Exception";
+import Introduction from '../Introduction';
+import Blog from '../Blog';
+import Topic from '../Topic';
+import Crawler from '../Crawler';
+import Bots from '../Bots';
+import Admin from '../Admin';
+import Exception from '../Exception';
 
 const App = () => {
   return (

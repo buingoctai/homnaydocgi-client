@@ -1,82 +1,78 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import {
-  makeStyles,
-  ThemeProvider,
-  createMuiTheme,
-} from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
-import TextField from "@material-ui/core/TextField";
-import { green } from "@material-ui/core/colors";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import TextField from '@material-ui/core/TextField';
+import { green } from '@material-ui/core/colors';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
-import DraggableDialog from "../../../components/Dialog";
+import DraggableDialog from '../../../components/Dialog';
 
 const useStyles = makeStyles((theme) => ({
   loginFormContainer: {
-    width: "100%",
-    "& > * + *": {
+    width: '100%',
+    '& > * + *': {
       marginTop: theme.spacing(2),
     },
 
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   iconContainer: {
-    width: "50px",
-    height: "50px",
-    color: "#00ffbf",
+    width: '50px',
+    height: '50px',
+    color: '#00ffbf',
   },
   title: {
-    fontSize: "20px",
-    fontWeight: "bold",
+    fontSize: '20px',
+    fontWeight: 'bold',
   },
   fieldInputContainer: {
     margin: theme.spacing(1),
-    width: "100%",
+    width: '100%',
   },
   buttonContainer: {
-    width: "100%",
-    color: "#15edaf",
-    backgroundColor: "#5fcfaf",
+    width: '100%',
+    color: '#15edaf',
+    backgroundColor: '#5fcfaf',
   },
 
   linearLoadingHandleInput: {
-    width: "100%",
-    "& > * + *": {
+    width: '100%',
+    '& > * + *': {
       marginTop: theme.spacing(2),
     },
   },
   linearLoadingNavigatePage: {
-    width: "100%",
-    marginTop: "250px",
+    width: '100%',
+    marginTop: '250px',
   },
   contentHeaderWrap: {
-    color: "#5fcfaf",
-    fontStyle: "italic",
-    fontWeight: "bold",
-    borderBottom: "2px",
+    color: '#5fcfaf',
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    borderBottom: '2px',
   },
   formControl: {
-    width: "100%",
+    width: '100%',
     margin: theme.spacing(3),
 
-    display: "flex",
-    justifyContent: "flex-start",
+    display: 'flex',
+    justifyContent: 'flex-start',
   },
   formLabel: {
-    width: "100%",
+    width: '100%',
 
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
   },
 }));
 const theme = createMuiTheme({
@@ -87,10 +83,10 @@ const theme = createMuiTheme({
 const Login = (props) => {
   const classes = useStyles();
   const [userData, setUserData] = useState({
-    userName: "",
-    fbUrl: "",
-    techKnowledge: "",
-    addKnowledge: "",
+    userName: '',
+    fbUrl: '',
+    techKnowledge: '',
+    addKnowledge: '',
   });
   const history = useHistory();
   const {
@@ -110,25 +106,25 @@ const Login = (props) => {
 
   // Handle disable btn
   const isDisabledTechField = isChooseTechOptions
-    ? userData.techKnowledge === "" || techLabels.length === 0
-    : userData.techKnowledge === "" && techLabels.length === 0;
+    ? userData.techKnowledge === '' || techLabels.length === 0
+    : userData.techKnowledge === '' && techLabels.length === 0;
   const isDisabledAddField = isChooseAddOptions
-    ? userData.addKnowledge === "" || addLabels.length === 0
-    : userData.addKnowledge === "" && addLabels.length === 0;
+    ? userData.addKnowledge === '' || addLabels.length === 0
+    : userData.addKnowledge === '' && addLabels.length === 0;
   // Validation
   const errUsernameProps = userData.userName.length > 15 && {
     error: true,
-    id: "standard-error-helper-text",
-    helperText: "Độ dài tối đa là 15 ký tự",
+    id: 'standard-error-helper-text',
+    helperText: 'Độ dài tối đa là 15 ký tự',
   };
-  const errFbUrlProps = userData.fbUrl.indexOf("facebook.com/") === -1 && {
+  const errFbUrlProps = userData.fbUrl.indexOf('facebook.com/') === -1 && {
     error: true,
-    id: "standard-error-helper-text",
-    helperText: "Phải chứa domain facebook.com",
+    id: 'standard-error-helper-text',
+    helperText: 'Phải chứa domain facebook.com',
   };
   const isDisabledBtn =
-    userData.userName === "" ||
-    userData.fbUrl === "" ||
+    userData.userName === '' ||
+    userData.fbUrl === '' ||
     isDisabledTechField ||
     isDisabledAddField ||
     errUsernameProps ||
@@ -137,7 +133,7 @@ const Login = (props) => {
 
   useEffect(() => {
     if (isSuccessLogin) {
-      history.push("/home");
+      history.push('/home');
     }
   });
 
@@ -154,9 +150,7 @@ const Login = (props) => {
               variant="outlined"
               id="mui-theme-provider-outlined-input"
               value={userData.userName}
-              onChange={({ target }) =>
-                setUserData({ ...userData, userName: target.value })
-              }
+              onChange={({ target }) => setUserData({ ...userData, userName: target.value })}
               {...errUsernameProps}
             />
           </ThemeProvider>
@@ -168,9 +162,7 @@ const Login = (props) => {
               variant="outlined"
               id="mui-theme-provider-outlined-input"
               value={userData.fbUrl}
-              onChange={({ target }) =>
-                setUserData({ ...userData, fbUrl: target.value })
-              }
+              onChange={({ target }) => setUserData({ ...userData, fbUrl: target.value })}
               {...errFbUrlProps}
             />
           </ThemeProvider>
@@ -208,14 +200,8 @@ const Login = (props) => {
                 variant="outlined"
                 id="mui-theme-provider-outlined-input"
                 // value={userData.techKnowledge}
-                value={
-                  techLabels.length > 0
-                    ? techLabels.toString()
-                    : userData.techKnowledge
-                }
-                onChange={({ target }) =>
-                  setUserData({ ...userData, techKnowledge: target.value })
-                }
+                value={techLabels.length > 0 ? techLabels.toString() : userData.techKnowledge}
+                onChange={({ target }) => setUserData({ ...userData, techKnowledge: target.value })}
                 multiline
                 rows="3"
               />
@@ -255,14 +241,8 @@ const Login = (props) => {
                 variant="outlined"
                 id="mui-theme-provider-outlined-input"
                 // value={userData.addKnowledge}
-                value={
-                  addLabels.length > 0
-                    ? addLabels.toString()
-                    : userData.addKnowledge
-                }
-                onChange={({ target }) =>
-                  setUserData({ ...userData, addKnowledge: target.value })
-                }
+                value={addLabels.length > 0 ? addLabels.toString() : userData.addKnowledge}
+                onChange={({ target }) => setUserData({ ...userData, addKnowledge: target.value })}
                 multiline
                 rows="3"
               />
@@ -274,14 +254,12 @@ const Login = (props) => {
             disabled={isDisabledBtn}
             onClick={() => onPressLoginButton(userData)}
           >
-            <span style={{ fontWeight: "bold" }}>BẮT ĐẦU</span>
+            <span style={{ fontWeight: 'bold' }}>BẮT ĐẦU</span>
           </Button>
           {isLoadingBtn && (
             <div className={classes.linearLoadingHandleInput}>
               <LinearProgress color="primary" />
-              <span style={{ fontWeight: "bold" }}>
-                Đang xử lý thông tin người dùng vừa nhập
-              </span>
+              <span style={{ fontWeight: 'bold' }}>Đang xử lý thông tin người dùng vừa nhập</span>
             </div>
           )}
           {/* <div>
@@ -320,8 +298,8 @@ const Login = (props) => {
       )}
       {!isKeepCurrentPage && (
         <div className={classes.linearLoadingNavigatePage}>
-          <LinearProgress color="primary" style={{ height: "3px" }} />
-          <span style={{ fontWeight: "bold" }}>Đang chuyển sang trang mới</span>
+          <LinearProgress color="primary" style={{ height: '3px' }} />
+          <span style={{ fontWeight: 'bold' }}>Đang chuyển sang trang mới</span>
         </div>
       )}
       {}

@@ -1,31 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import moment from "moment";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import moment from 'moment';
 
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 
-import { translatePostGroupTitle } from "../../../utils/utils";
+import { translatePostGroupTitle } from '../../../utils/utils';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    position: "relative",
+    position: 'relative',
   },
   layout: {
-    width: "auto",
+    width: 'auto',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 600,
-      marginLeft: "auto",
-      marginRight: "auto",
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
   },
   paper: {
@@ -39,23 +39,23 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   textWrap: {
-    width: "100%",
-    margin: "10px 0",
+    width: '100%',
+    margin: '10px 0',
   },
   btnWrap: {
-    display: "flex",
+    display: 'flex',
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   optionWrap: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
   },
   wrappedOption: {
-    display: "flex",
-    flexGrow: "1",
-    marginRight: "8px",
+    display: 'flex',
+    flexGrow: '1',
+    marginRight: '8px',
   },
 }));
 
@@ -65,24 +65,24 @@ const AddingForm = (props) => {
   const { author, title, content, topic, submitDate, imageUrl } = articleData;
   const errAuthor = author.length > 20 && {
     error: true,
-    id: "standard-error-helper-text",
-    helperText: "Độ dài tối đa là 20 ký tự",
+    id: 'standard-error-helper-text',
+    helperText: 'Độ dài tối đa là 20 ký tự',
   };
   const errTile = title.length > 100 && {
     error: true,
-    id: "standard-error-helper-text",
-    helperText: "Độ dài tối đa là 100 ký tự",
+    id: 'standard-error-helper-text',
+    helperText: 'Độ dài tối đa là 100 ký tự',
   };
   const errContent = content &&
     content.length > 40000 && {
       error: true,
-      id: "standard-error-helper-text",
-      helperText: "Độ dài tối đa là 40000 ký tự",
+      id: 'standard-error-helper-text',
+      helperText: 'Độ dài tối đa là 40000 ký tự',
     };
 
   return (
     <Paper className={classes.paper}>
-      <Link to={{ pathname: "/home" }} style={{ textDecoration: "none" }}>
+      <Link to={{ pathname: '/home' }} style={{ textDecoration: 'none' }}>
         <KeyboardReturnIcon color="primary" />
       </Link>
       <Typography component="h1" variant="h4" align="center">
@@ -98,9 +98,7 @@ const AddingForm = (props) => {
           multiline
           rows="1"
           {...errAuthor}
-          onChange={({ target }) =>
-            setArticleData({ ...articleData, author: target.value })
-          }
+          onChange={({ target }) => setArticleData({ ...articleData, author: target.value })}
         />
         <TextField
           className={classes.textWrap}
@@ -127,9 +125,7 @@ const AddingForm = (props) => {
           multiline
           rows="1"
           {...errTile}
-          onChange={({ target }) =>
-            setArticleData({ ...articleData, imageUrl: target.value })
-          }
+          onChange={({ target }) => setArticleData({ ...articleData, imageUrl: target.value })}
         />
         <TextField
           className={classes.textWrap}
@@ -140,9 +136,7 @@ const AddingForm = (props) => {
           multiline
           rows="10"
           {...errContent}
-          onChange={({ target }) =>
-            setArticleData({ ...articleData, content: target.value })
-          }
+          onChange={({ target }) => setArticleData({ ...articleData, content: target.value })}
         />
         <FormControl variant="outlined" className={classes.optionWrap}>
           <InputLabel htmlFor="outlined-age-native-simple">Chủ đề</InputLabel>
@@ -152,60 +146,38 @@ const AddingForm = (props) => {
             // onChange={handleChange}
             label="Topic"
             inputProps={{
-              name: "age",
-              id: "outlined-age-native-simple",
+              name: 'age',
+              id: 'outlined-age-native-simple',
             }}
             className={classes.wrappedOption}
-            onChange={({ target }) =>
-              setArticleData({ ...articleData, topic: target.value })
-            }
+            onChange={({ target }) => setArticleData({ ...articleData, topic: target.value })}
           >
             <option aria-label="None" value="" />
-            <option value="Front End">
-              {translatePostGroupTitle("Front End")}
-            </option>
-            <option value="Back End">
-              {translatePostGroupTitle("Back End")}
-            </option>
+            <option value="Front End">{translatePostGroupTitle('Front End')}</option>
+            <option value="Back End">{translatePostGroupTitle('Back End')}</option>
             <option value="AI/ML/DL Research">
-              {translatePostGroupTitle("AI/ML/DL Research")}
+              {translatePostGroupTitle('AI/ML/DL Research')}
             </option>
-            <option value="Philosophy">
-              {translatePostGroupTitle("Philosophy")}
-            </option>
-            <option value="Psychology">
-              {translatePostGroupTitle("Psychology")}
-            </option>
-            <option value="Sociology">
-              {translatePostGroupTitle("Sociology")}
-            </option>
-            <option value="Sales">{translatePostGroupTitle("Sales")}</option>
-            <option value="Marketing">
-              {translatePostGroupTitle("Marketing")}
-            </option>
-            <option value="LeaderShip">
-              {translatePostGroupTitle("LeaderShip")}
-            </option>
-            <option value="Administration">
-              {translatePostGroupTitle("Administration")}
-            </option>
-            <option value="Personal View">
-              {translatePostGroupTitle("Personal View")}
-            </option>
-            <option value="Sport">{translatePostGroupTitle("Sport")}</option>
+            <option value="Philosophy">{translatePostGroupTitle('Philosophy')}</option>
+            <option value="Psychology">{translatePostGroupTitle('Psychology')}</option>
+            <option value="Sociology">{translatePostGroupTitle('Sociology')}</option>
+            <option value="Sales">{translatePostGroupTitle('Sales')}</option>
+            <option value="Marketing">{translatePostGroupTitle('Marketing')}</option>
+            <option value="LeaderShip">{translatePostGroupTitle('LeaderShip')}</option>
+            <option value="Administration">{translatePostGroupTitle('Administration')}</option>
+            <option value="Personal View">{translatePostGroupTitle('Personal View')}</option>
+            <option value="Sport">{translatePostGroupTitle('Sport')}</option>
           </Select>
           <TextField
             id="date"
             label="Thời gian"
             type="date"
-            defaultValue={moment().format("YYYY-MM-DD")}
+            defaultValue={moment().format('YYYY-MM-DD')}
             InputLabelProps={{
               shrink: true,
             }}
             className={classes.wrappedOption}
-            onChange={({ target }) =>
-              setArticleData({ ...articleData, submitDate: target.value })
-            }
+            onChange={({ target }) => setArticleData({ ...articleData, submitDate: target.value })}
           />
         </FormControl>
 

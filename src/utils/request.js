@@ -1,6 +1,6 @@
-import axios from "axios";
-import { getCookie } from "./utils";
-import { COOKIE_NAMES, REQUEST_TIMEOUT, FACEBOOK_DEV } from "./constants";
+import axios from 'axios';
+import { getCookie } from './utils';
+import { COOKIE_NAMES, REQUEST_TIMEOUT, FACEBOOK_DEV } from './constants';
 
 const request = (url, options) => {
   return axios({

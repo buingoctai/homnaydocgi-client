@@ -1,8 +1,4 @@
-import {
-  TOPIC_TRANSLATE_CONTENT,
-  URL,
-  NUMBER_COLUMN_SCREEN_SIZE,
-} from './constants';
+import { TOPIC_TRANSLATE_CONTENT, URL, NUMBER_COLUMN_SCREEN_SIZE } from './constants';
 
 export const setCookie = (cookieName, cookieValue, expiresHour) => {
   const d = new Date();
@@ -20,9 +16,7 @@ export const getCookie = (cookieName) => {
 export const translatePostGroupTitle = (param) => {
   if (!param) return;
 
-  const [topicLanguage] = TOPIC_TRANSLATE_CONTENT.filter(
-    (item) => item.eng === param
-  );
+  const [topicLanguage] = TOPIC_TRANSLATE_CONTENT.filter((item) => item.eng === param);
   if (!topicLanguage) return param;
   const { vn } = topicLanguage;
   return vn;
@@ -80,10 +74,7 @@ const determinateNumberColumn = (len, numberCol) => {
 };
 export default determinateNumberColumn;
 
-export const determinateColumnData = ({
-  screenSize = 'medium',
-  posts = [],
-}) => {
+export const determinateColumnData = ({ screenSize = 'medium', posts = [] }) => {
   if (posts.length === 0) return { columnDataList: [], screenSize };
   if (posts.length < 6) return { columnDataList: [posts], screenSize };
   let columnDataList = [];

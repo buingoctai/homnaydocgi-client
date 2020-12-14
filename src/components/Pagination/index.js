@@ -1,5 +1,5 @@
-import React from "react";
-import Pagination from "@material-ui/lab/Pagination";
+import React from 'react';
+import Pagination from '@material-ui/lab/Pagination';
 
 const Paging = (props) => {
   const { currentPageIndex, totalRecord, onChangePageIndex } = props;
@@ -9,9 +9,9 @@ const Paging = (props) => {
       page={currentPageIndex}
       count={totalRecord}
       style={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
       }}
       color="primary"
       onChange={(event, pageIndex) => onChangePageIndex(pageIndex)}
