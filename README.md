@@ -2,11 +2,14 @@
 
 ## Node version: 14.4.0
 
-## Install packages: yarn or npm install
+## Install packages: 
++ yarn or npm install
 
-## Run app:yarn start
+## Run app:
++ yarn start
 
-## Formating Code: yarn format
+## Formating Code: 
++ yarn format
 
 ## Features:
 + Apply react vitrualized
