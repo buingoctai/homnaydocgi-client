@@ -6,10 +6,13 @@
 + yarn or npm install
 
 ## Run app:
-+ yarn start
++ yarn dev
 
 ## Formating Code: 
 + yarn format
+## Heorku:
++ Logs: heroku logs --tail --app homnaydocgi-client
++ Restart app: heroku restart -a homnaydocgi-client
 
 ## Features:
 + Apply react vitrualized
