@@ -9,7 +9,7 @@ module.exports = merge(common, {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
       API_BASE: 'https://homnaydocgi-server.herokuapp.com',
-      APP_BASE: 'https://www.homnaydocgi.com',
+      APP_BASE: 'https://homnaydocgi-client.herokuapp.com',
     }),
   ],
 });
