@@ -114,6 +114,7 @@ export const addSkeletonLoading = ({ data = [], numberCol }) => {
   }
   return [...data];
 };
+
 export const createBooleanObj = (arr = []) => {
   let obj = {};
 

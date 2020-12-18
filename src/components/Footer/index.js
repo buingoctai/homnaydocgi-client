@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
       '.MuiContainer-maxWidthLg': {
         width: '90%',
         boxShadow: 'none',
-        backgroundColor: '#595959',
+        backgroundColor: '#C1C1C1',
         borderRadius: '5px',
       },
       '.MuiTypography-subtitle1': {
@@ -42,13 +42,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Footer(props) {
   const classes = useStyles();
-  const { description } = props;
 
   return (
     <footer className={classes.footer}>
       <Container maxWidth="lg">
-        <Typography variant="subtitle1" align="center" color="aliceblue" component="p">
-          {description}
+        <Typography variant="subtitle1" align="center" component="p" style={{ color: 'black' }}>
+          THAM GIA CÙNG ĐỘI PHÁT TRIỂN- ZALO 0983053600 BÙI NGỌC TÀI
         </Typography>
         <Copyright />
       </Container>

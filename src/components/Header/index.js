@@ -13,8 +13,9 @@ import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import Badge from '@material-ui/core/Badge';
 
-import { userDataCRUD } from '../../utils/utils';
-import DrawerMenu from '../../components/DrawerMenu';
+import { useDebounce } from 'srcRoot/components/Hooks';
+import { userDataCRUD } from 'srcRoot/utils/utils';
+import DrawerMenu from 'srcRoot/components/DrawerMenu';
 
 const useStyles = makeStyles((theme) => ({
   header__container: {
@@ -106,6 +107,8 @@ const Header = (props) => {
   const is_maxWidth_1000px = useMediaQuery('(max-width:1000px)');
   const [showAppName, setShowAppName] = useState(true);
   const [hidingUserIcon, setHidingUserIcon] = useState(true);
+  const [searchTxt, setSearchTxt] = useState('');
+
   const {
     title,
     postList,
@@ -158,12 +161,26 @@ const Header = (props) => {
       setShowAppName(false);
     }, 3000);
   });
+
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
     return () => {
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
+
+  // const debouncedValue = useDebounce(searchTxt, 300);
+  // useEffect(() => {
+  //   if (!debouncedValue) return;
+  //   if (window.location.pathname === '/home/topic') {
+  //     onSearchArticle(searchTxt);
+  //     return;
+  //   }
+  //   history.push({
+  //     pathname: '/home/topic',
+  //     searchTxt,
+  //   });
+  // }, [debouncedValue]);
   return (
     <React.Fragment>
       <Toolbar className={classes.header__container}>
@@ -188,7 +205,10 @@ const Header = (props) => {
               fullWidth={true}
               size="small"
               value={searchingTxt || ''}
+              // value={searchTxt || ''}
+              autoFocus={window.location.pathname === '/home/topic' || false}
               onChange={(node) => onChangeSearchTxt(node.target.value)}
+              // onChange={(node) => setSearchTxt(node.target.value)}
             />
             <SearchIcon />
           </IconButton>
