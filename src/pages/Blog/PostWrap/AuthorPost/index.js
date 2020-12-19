@@ -45,8 +45,8 @@ const userStyles = makeStyles(() => ({
 }));
 
 const AuthorPost = (props) => {
-  const { responsiveObj, type, title, data, navigateTime } = props;
-  const classes = userStyles({ ...responsiveObj });
+  const { type, title, data, navigateTime } = props;
+  const classes = userStyles();
 
   const slideWrap = () => {
     if (type === 'image') {

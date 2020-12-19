@@ -232,6 +232,12 @@ const AUTHOR_LIST = {
   author: [...AUTHOR_DATA.infor],
 };
 
+const SCREEN_SIZE = {
+  MOBILE: 200,
+  LAPTOP: 1000,
+  DESKTOP: 1500,
+};
+
 export {
   authorBrielf,
   skillGroup,
@@ -246,4 +252,5 @@ export {
   URL,
   NUMBER_COLUMN_SCREEN_SIZE,
   AUTHOR_LIST,
+  SCREEN_SIZE,
 };

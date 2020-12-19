@@ -19,7 +19,7 @@ import DrawerMenu from 'srcRoot/components/DrawerMenu';
 
 const useStyles = makeStyles((theme) => ({
   header__container: {
-    padding: (props) => (props.is_maxWidth_1000px ? '0px 2px' : null),
+    padding: (props) => (props.isLaptop ? '0px 2px' : null),
     transition: 'transform 1s',
     transform: (props) => (props.hidingUserIcon ? 'none' : 'translateY(-100%)'),
     height: '46px',
@@ -34,18 +34,18 @@ const useStyles = makeStyles((theme) => ({
   user__btn__wrap: {
     color: '#737373',
     fontWeight: 'bold',
-    fontSize: (props) => (props.is_maxWidth_1000px ? '10px' : '15px'),
+    fontSize: (props) => (props.isLaptop ? '10px' : '15px'),
   },
   title__wrap: {
     flex: 1,
     fontWeight: '1000',
     fontStyle: 'italic',
     color: '#808182',
-    textShadow: (props) => (props.is_maxWidth_1000px ? '1px 1px white' : '2px 2px white'),
+    textShadow: (props) => (props.isLaptop ? '1px 1px white' : '2px 2px white'),
     position: 'relative',
     animationName: '$titleAmination',
     animationDuration: '6s',
-    fontSize: (props) => (props.is_maxWidth_1000px ? '15px' : '30px'),
+    fontSize: (props) => (props.isLaptop ? '15px' : '30px'),
   },
 
   '@keyframes titleAmination': {
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
   },
   search__placeholder: {
     fontWeight: 'bold',
-    fontSize: (props) => (props.is_maxWidth_1000px ? '5px' : '10px'),
+    fontSize: (props) => (props.isLaptop ? '5px' : '10px'),
     '@global': {
       '.MuiInput-underline:before': {
         borderBottom: 'none',
@@ -68,10 +68,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   subcribe__btn__wrap: {
-    marginRight: (props) => (props.is_maxWidth_1000px ? '0px' : '10px'),
+    marginRight: (props) => (props.isLaptop ? '0px' : '10px'),
     color: '#ffff',
     fontWeight: 'bold',
-    fontSize: (props) => (props.is_maxWidth_1000px ? '10px' : '15px'),
+    fontSize: (props) => (props.isLaptop ? '10px' : '15px'),
     transition: 'transform 0.25s',
     '&:hover': {
       transform: 'scale(1.05)',
@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   bookmark__btn__wrap: {
     color: '#ffff',
     fontWeight: 'bold',
-    fontSize: (props) => (props.is_maxWidth_1000px ? '10px' : '15px'),
+    fontSize: (props) => (props.isLaptop ? '10px' : '15px'),
     transition: 'transform 0.25s',
     '&:hover': {
       transform: 'scale(1.05)',
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
   const history = useHistory();
-  const is_maxWidth_1000px = useMediaQuery('(max-width:1000px)');
+  const isLaptop = useMediaQuery('(max-width:1000px)');
   const [showAppName, setShowAppName] = useState(true);
   const [hidingUserIcon, setHidingUserIcon] = useState(true);
   const [searchTxt, setSearchTxt] = useState('');
@@ -119,7 +119,7 @@ const Header = (props) => {
     onSearchArticle,
     onSubscribePage,
   } = props;
-  const classes = useStyles({ ...props, is_maxWidth_1000px, hidingUserIcon });
+  const classes = useStyles({ ...props, isLaptop, hidingUserIcon });
 
   const handleDeleteUser = () => {
     userDataCRUD({ action: 'DELETE' });
@@ -185,7 +185,7 @@ const Header = (props) => {
     <React.Fragment>
       <Toolbar className={classes.header__container}>
         <DrawerMenu onSubscribePage={onSubscribePage} />
-        {(showAppName || !is_maxWidth_1000px) && (
+        {(showAppName || !isLaptop) && (
           <Typography
             variant="h5"
             color="inherit"
@@ -196,7 +196,7 @@ const Header = (props) => {
             {title}
           </Typography>
         )}
-        {!is_maxWidth_1000px && (
+        {!isLaptop && (
           <IconButton className={classes.search}>
             <TextField
               id="standard-basic"
@@ -213,7 +213,7 @@ const Header = (props) => {
             <SearchIcon />
           </IconButton>
         )}
-        {(!showAppName || !is_maxWidth_1000px) && (
+        {(!showAppName || !isLaptop) && (
           <>
             {window.location.pathname === '/home' && (
               <Button
@@ -244,7 +244,7 @@ const Header = (props) => {
             </Button>
           </>
         )}
-        {(!showAppName || !is_maxWidth_1000px) && (
+        {(!showAppName || !isLaptop) && (
           <Chip
             icon={<FaceIcon />}
             label={currentUser || 'Vô danh'}
@@ -253,7 +253,7 @@ const Header = (props) => {
           />
         )}
       </Toolbar>
-      {is_maxWidth_1000px && (
+      {isLaptop && (
         <>
           <IconButton className={classes.search}>
             <TextField

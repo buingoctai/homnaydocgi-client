@@ -1,4 +1,5 @@
-import { TOPIC_TRANSLATE_CONTENT, URL, NUMBER_COLUMN_SCREEN_SIZE } from './constants';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { TOPIC_TRANSLATE_CONTENT, URL, NUMBER_COLUMN_SCREEN_SIZE, SCREEN_SIZE } from './constants';
 
 export const setCookie = (cookieName, cookieValue, expiresHour) => {
   const d = new Date();
@@ -122,4 +123,22 @@ export const createBooleanObj = (arr = []) => {
     obj[arr[i].id] = false;
   }
   return obj;
+};
+
+export const currentScreen = () => {
+  const minMobile = useMediaQuery(`(min-width:${SCREEN_SIZE.MOBILE}px)`);
+  const minLaptop = useMediaQuery(`(min-width:${SCREEN_SIZE.LAPTOP}px)`);
+  const minDesktop = useMediaQuery(`(min-width:${SCREEN_SIZE.DESKTOP}px)`);
+
+  const isMobile = minMobile;
+  const isLaptop = minMobile && minLaptop;
+  const isDesktop = minMobile && minLaptop && minDesktop;
+
+  if (isDesktop) {
+    return { isMobile: false, isLaptop: false, isDesktop: true };
+  } else if (isLaptop) {
+    return { isMobile: false, isLaptop: true, isDesktop: false };
+  } else {
+    return { isMobile: true, isLaptop: false, isDesktop: false };
+  }
 };

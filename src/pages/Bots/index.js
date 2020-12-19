@@ -56,20 +56,20 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   container: {
     width: '90%',
-    paddingLeft: (props) => (props.is_maxWidth_500px ? '0px' : 'none'),
-    paddingRight: (props) => (props.is_maxWidth_500px ? '0px' : 'none'),
+    paddingLeft: (props) => (props.isMobile ? '0px' : 'none'),
+    paddingRight: (props) => (props.isMobile ? '0px' : 'none'),
   },
 
   rootWrap: {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row',
-    marginTop: (props) => (props.is_maxWidth_500px ? '5px' : '50px'),
+    marginTop: (props) => (props.isMobile ? '5px' : '50px'),
   },
 
   tabWrap: {
     backgroundColor: theme.palette.background.paper,
-    width: (props) => (props.is_maxWidth_500px ? '95%' : '70%'),
+    width: (props) => (props.isMobile ? '95%' : '70%'),
     display: (props) => props.isLoadingPage && 'flex',
     alignItems: (props) => props.isLoadingPage && 'center',
     height: (props) => props.isLoadingPage && '700px',
@@ -109,9 +109,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Bots = (props) => {
   const responsiveObj = {
-    is_maxWidth_500px: useMediaQuery('(max-width:500px)'),
-    is_maxWidth_1000px: useMediaQuery('(max-width:1000px)'),
-    is_minWidth_2000px: useMediaQuery('(min-width:2000px)'),
+    isMobile: useMediaQuery('(max-width:500px)'),
+    isLaptop: useMediaQuery('(max-width:1000px)'),
+    isDesktop: useMediaQuery('(min-width:2000px)'),
   };
 
   const {

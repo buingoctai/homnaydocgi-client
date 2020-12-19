@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import LoadingEntireApp from 'srcRoot/components/LoadingEntireApp';
 
@@ -17,7 +16,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   image__wrap: {
-    // width: (props) => (props.is_maxWidth_500px ? "100%" : "50%"),
+    // width: (props) => (props.isMobile ? "100%" : "50%"),
     width: '100%',
     position: 'relative',
     transition: 'transform 0.3s',
@@ -40,8 +39,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function MainFeaturedPost(props) {
-  const { post, isLoadingPage, responsiveObj, onHandleOpenDetailContainer } = props;
-  const classes = useStyles({ ...responsiveObj });
+  const { post, isLoadingPage, onHandleOpenDetailContainer } = props;
+  const classes = useStyles();
 
   return (
     <div className={classes.container}>

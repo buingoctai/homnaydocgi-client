@@ -1,5 +1,4 @@
 import React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -12,6 +11,7 @@ import Main from 'srcRoot/components/Main';
 import Footer from 'srcRoot/components/Footer';
 import PostGrid from 'srcRoot/components/PostGrid';
 import { AUTHOR_LIST } from 'srcRoot/utils/constants';
+import { currentScreen } from 'srcRoot/utils/utils';
 
 import TopicOption from './components/TopicOption';
 import MainFeaturedPost from './PostWrap/MainFeaturedPost';
@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
   container: {
     position: 'relative',
     width: '90%',
-    paddingLeft: (props) => (props.is_maxWidth_500px ? '0px' : 'none'),
-    paddingRight: (props) => (props.is_maxWidth_500px ? '0px' : 'none'),
+    paddingLeft: (props) => (props.isMobile ? '0px' : 'none'),
+    paddingRight: (props) => (props.isMobile ? '0px' : 'none'),
   },
   main: {
     display: 'flex',
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   featureGrid: {
-    // width: (props) => (props.is_maxWidth_500px ? "100%" : "50%"),
+    // width: (props) => (props.isMobile ? "100%" : "50%"),
     // width: "100%",
     '@global': {
       '.MuiGrid-item': {
@@ -76,11 +76,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Blog = (props) => {
-  const responsiveObj = {
-    is_maxWidth_500px: useMediaQuery('(max-width:500px)'),
-    is_maxWidth_1000px: useMediaQuery('(max-width:1000px)'),
-    is_minWidth_2000px: useMediaQuery('(min-width:2000px)'),
+  const screen = {
+    isMobile: currentScreen().isMobile,
+    isLaptop: currentScreen().isLaptop,
+    isDesktop: currentScreen().isDesktop,
   };
+
   const {
     isOpenNotification,
     isOpenFeedBack,
@@ -124,7 +125,7 @@ const Blog = (props) => {
     ],
   };
 
-  const classes = useStyles({ ...responsiveObj });
+  const classes = useStyles({ ...screen });
   // const isLoadingPage = true;
   return (
     <React.Fragment>
@@ -166,26 +167,23 @@ const Blog = (props) => {
           <div className={classes.main}>
             <MainFeaturedPost
               post={mainPosts}
-              responsiveObj={responsiveObj}
               isLoadingPage={isLoadingPage}
               onHandleOpenDetailContainer={onHandleOpenDetailContainer}
             />
-            {!responsiveObj.is_maxWidth_500px && (
+            {!screen.isMobile && (
               <AuthorPost
                 type="image"
                 title="Các khái niệm mới"
                 data={AUTHOR_LIST.image}
                 navigateTime={3000}
-                responsiveObj={responsiveObj}
               />
             )}
-            {!responsiveObj.is_maxWidth_500px && (
+            {!screen.isMobile && (
               <AuthorPost
                 type="infor"
                 title="Chuyên gia"
                 data={AUTHOR_LIST.author}
                 navigateTime={1500}
-                responsiveObj={responsiveObj}
               />
             )}
           </div>
@@ -195,9 +193,8 @@ const Blog = (props) => {
                 key="featured post"
                 post={featuredPosts}
                 isLoadingPage={isLoadingPage}
-                responsiveObj={responsiveObj}
-                onHandleOpenDetailContainer={onHandleOpenDetailContainer}
                 widthCol={6}
+                onHandleOpenDetailContainer={onHandleOpenDetailContainer}
               />
             </Grid>
           </div>
@@ -210,7 +207,6 @@ const Blog = (props) => {
                 totalRecord={Math.ceil(allPost.totalRecord / 3)}
                 isShowPaging={isShowPaging}
                 currentPageIndex={currentPageIndex}
-                responsiveObj={responsiveObj}
                 onHandleOpenDetailContainer={onHandleOpenDetailContainer}
               />
             </Grid>
@@ -222,7 +218,6 @@ const Blog = (props) => {
             post={detailPost}
             showingPost={showingPost}
             isOpenDetaiContainer={isOpenDetaiContainer}
-            responsiveObj={responsiveObj}
             loading={isLoadingSubPage}
             isBookMarkedPost={isBookMarkedPost}
             onHandleOpenDetailContainer={onHandleOpenDetailContainer}

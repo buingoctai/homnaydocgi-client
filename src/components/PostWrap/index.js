@@ -36,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
-    fontSize: (props) => (props.is_maxWidth_500px ? '10px' : 'none'),
+    fontSize: (props) => (props.isMobile ? '10px' : 'none'),
   },
   content: {
-    fontSize: (props) => (props.is_maxWidth_500px ? '10px' : 'none'),
+    fontSize: (props) => (props.isMobile ? '10px' : 'none'),
   },
   buttonGroupWrap: {
     display: 'flex',
@@ -47,9 +47,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: (props) => (props.stayListenStatus ? '36px' : '10px'),
   },
   button: {
-    fontSize: (props) => (props.is_maxWidth_500px ? '10px' : 'none'),
-    padding: (props) => (props.is_maxWidth_500px ? '2px 2px' : 'none'),
-    height: (props) => (props.is_maxWidth_500px ? '20px' : 'none'),
+    fontSize: (props) => (props.isMobile ? '10px' : 'none'),
+    padding: (props) => (props.isMobile ? '2px 2px' : 'none'),
+    height: (props) => (props.isMobile ? '20px' : 'none'),
   },
   audioPlayerWrap: {
     paddingBottom: '0px',
@@ -58,39 +58,39 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#F1F3F4',
     '@global': {
       '.rhap_time': {
-        fontSize: (props) => (props.is_maxWidth_500px ? '10px' : 'none'),
+        fontSize: (props) => (props.isMobile ? '10px' : 'none'),
       },
       '.rhap_repeat-button': {
-        fontSize: (props) => (props.is_maxWidth_500px ? '10px' : 'none'),
+        fontSize: (props) => (props.isMobile ? '10px' : 'none'),
       },
       '.rhap_main-controls-button': {
-        fontSize: (props) => (props.is_maxWidth_500px ? '15px' : 'none'),
+        fontSize: (props) => (props.isMobile ? '15px' : 'none'),
       },
       '.rhap_progress-indicator': {
-        width: (props) => (props.is_maxWidth_500px ? '5px' : 'none'),
-        height: (props) => (props.is_maxWidth_500px ? '5px' : 'none'),
+        width: (props) => (props.isMobile ? '5px' : 'none'),
+        height: (props) => (props.isMobile ? '5px' : 'none'),
       },
       '.rhap_volume-button': {
-        display: (props) => (props.is_maxWidth_500px ? 'none' : 'flex'),
+        display: (props) => (props.isMobile ? 'none' : 'flex'),
       },
       '.rhap_volume-indicator': {
-        display: (props) => (props.is_maxWidth_500px ? 'none' : 'flex'),
+        display: (props) => (props.isMobile ? 'none' : 'flex'),
       },
       '.rhap_progress-section': {
-        width: (props) => (props.is_maxWidth_500px ? '150px' : 'none'),
+        width: (props) => (props.isMobile ? '150px' : 'none'),
       },
       '.rhap_controls-section': {
-        width: (props) => (props.is_maxWidth_500px ? '150px' : 'none'),
-        height: (props) => (props.is_maxWidth_500px ? '20px' : 'none'),
-        marginTop: (props) => (props.is_maxWidth_500px ? '0px' : 'none'),
+        width: (props) => (props.isMobile ? '150px' : 'none'),
+        height: (props) => (props.isMobile ? '20px' : 'none'),
+        marginTop: (props) => (props.isMobile ? '0px' : 'none'),
       },
     },
-    padding: (props) => (props.is_maxWidth_500px ? '0px 0px' : 'none'),
+    padding: (props) => (props.isMobile ? '0px 0px' : 'none'),
   },
 }));
 const PostWrap = (props) => {
   const { post, responsiveObj, currentAudioArticle, onClickListenArticle } = props;
-  const { is_maxWidth_500px } = responsiveObj;
+  const { isMobile } = responsiveObj;
   const { id, audio } = currentAudioArticle;
 
   const [isLoading, setIsLoading] = useState(false);
@@ -139,16 +139,14 @@ const PostWrap = (props) => {
           src={post.imageUrl}
           alt="Ảnh"
           style={
-            is_maxWidth_500px
-              ? { width: '120px', height: '110px' }
-              : { width: '250px', height: '160px' }
+            isMobile ? { width: '120px', height: '110px' } : { width: '250px', height: '160px' }
           }
         />
       </div>
       <div className={classes.fullContentWrap}>
         <h3 className={classes.title}>{post.title}</h3>
         <p className={classes.content}>
-          {stayListenStatus || is_maxWidth_500px
+          {stayListenStatus || isMobile
             ? `${post.content.substring(0, 100)}...`
             : `${post.content.substring(0, 250)}...`}
         </p>

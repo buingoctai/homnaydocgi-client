@@ -12,14 +12,14 @@ import Main from 'srcRoot/components/Main';
 import Footer from 'srcRoot/components/Footer';
 import DetailPost from 'srcRoot/components/DetailPost';
 
-import { translatePostGroupTitle } from 'srcRoot/utils/utils';
+import { translatePostGroupTitle, currentScreen } from 'srcRoot/utils/utils';
 import enhance from './enhance';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     width: '90%',
-    paddingLeft: (props) => (props.is_maxWidth_500px ? '0px' : 'none'),
-    paddingRight: (props) => (props.is_maxWidth_500px ? '0px' : 'none'),
+    paddingLeft: (props) => (props.isMobile ? '0px' : 'none'),
+    paddingRight: (props) => (props.isMobile ? '0px' : 'none'),
   },
 }));
 
@@ -42,12 +42,12 @@ const Topic = (props) => {
     onUnSaveListPost,
     setSearchingTxt,
   } = props;
-  const responsiveObj = {
-    is_maxWidth_500px: useMediaQuery('(max-width:500px)'),
-    is_maxWidth_1000px: useMediaQuery('(max-width:1000px)'),
-    is_minWidth_2000px: useMediaQuery('(min-width:2000px)'),
+  const screen = {
+    isMobile: currentScreen().isMobile,
+    isLaptop: currentScreen().isLaptop,
+    isDesktop: currentScreen().isDesktop,
   };
-  const classes = useStyles({ ...responsiveObj });
+  const classes = useStyles({ ...screen });
 
   return (
     <React.Fragment>
@@ -76,7 +76,6 @@ const Topic = (props) => {
         />
         <PostGrid
           posts={allPost.data}
-          responsiveObj={responsiveObj}
           isShowPaging={isShowPaging}
           totalRecord={Math.ceil(allPost.data.length / 3)}
           onHandleOpenDetailContainer={onHandleOpenDetailContainer}
@@ -86,7 +85,6 @@ const Topic = (props) => {
             post={detailPost}
             showingPost={showingPost}
             isOpenDetaiContainer={isOpenDetaiContainer}
-            responsiveObj={responsiveObj}
             loading={isLoadingSubPage}
             isBookMarkedPost={isBookMarkedPost}
             onHandleOpenDetailContainer={onHandleOpenDetailContainer}

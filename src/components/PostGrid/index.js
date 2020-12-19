@@ -1,16 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
 import Paging from '../Pagination';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Paper from '@material-ui/core/Paper';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import LoadingNewPost from 'srcRoot/components/LoadingNewPost';
-import Skeleton from '@material-ui/lab/Skeleton';
 
-import { determinateColumnData, addSkeletonLoading } from '../../utils/utils';
+import LoadingNewPost from 'srcRoot/components/LoadingNewPost';
+import { determinateColumnData, addSkeletonLoading, currentScreen } from '../../utils/utils';
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: '20px 20px',
@@ -77,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   gridListContainer: {
-    width: (props) => (props.is_maxWidth_1000px ? '100%' : 'calc(100%/4)'),
+    width: (props) => (props.isMobile ? '100%' : 'calc(100%/4)'),
     display: 'flex',
     flexDirection: 'column',
     margin: '0px 0px !important',
@@ -85,19 +82,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PostGrid = (props) => {
-  const {
-    posts,
-    totalRecord,
-    isShowPaging,
-    currentPageIndex,
-    responsiveObj,
-    onHandleOpenDetailContainer,
-  } = props;
+  const { posts, totalRecord, isShowPaging, currentPageIndex, onHandleOpenDetailContainer } = props;
   // const isShowPaging = false;
-  const isMobileScreen = responsiveObj.is_maxWidth_1000px;
-  const classes = useStyles({ ...responsiveObj });
+  const screen = {
+    isMobile: currentScreen().isMobile,
+    isLaptop: currentScreen().isLaptop,
+    isDesktop: currentScreen().isDesktop,
+  };
+  const classes = useStyles({ ...screen });
   const { numberCol, columnDataList } = determinateColumnData({
-    screenSize: isMobileScreen ? 'mobile' : 'medium',
+    screenSize: screen.isMobile ? 'mobile' : 'medium',
     posts,
   });
 

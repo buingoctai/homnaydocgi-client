@@ -8,6 +8,7 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import Button from '@material-ui/core/Button';
 import LoadingParagraph from 'srcRoot/components/LoadingParagraph';
+import { currentScreen } from 'srcRoot/utils/utils';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -34,19 +35,23 @@ const useStyles = makeStyles((theme) => ({
   grid__wrap: {
     height: '100%',
     padding: theme.spacing(9),
+    paddingLeft: '0px',
+    paddingRight: '0px',
+    paddingBottom: '20px',
   },
   large__grid_wrap: {
     width: '50%',
   },
   small_grid_wrap: {
-    width: (props) => (props.is_maxWidth_500px ? '130%' : '60%'),
-    padding: (props) => (props.is_maxWidth_500px ? '60px 72px 10px 72px' : 'none'),
+    width: (props) => (props.isMobile ? '130%' : '60%'),
+    // width:'130%',
+    padding: (props) => (props.isMobile ? '60px 72px 10px 72px' : 'none'),
   },
   item__grid__wrap: {
     height: '100%',
     overflow: 'hidden',
     position: 'relative',
-    width: (props) => (props.is_maxWidth_500px ? '500px' : 'none'),
+    width: (props) => (props.isMobile ? '500px' : 'none'),
   },
   title__wrap: {
     width: '10px',
@@ -67,7 +72,8 @@ const useStyles = makeStyles((theme) => ({
     left: '0',
     bottom: '-20px',
     right: '-20px',
-    padding: theme.spacing(2),
+    padding: '20px',
+    paddingRight: (props) => (props.isMobile ? '30px' : '20px'),
     color: theme.palette.text.secondary,
     backgroundColor: '#FFFFED',
     textAlign: 'center',
@@ -91,7 +97,6 @@ export default function DetailPost(props) {
     post,
     showingPost,
     isOpenDetaiContainer,
-    responsiveObj,
     loading,
     isBookMarkedPost,
     onHandleOpenDetailContainer,
@@ -99,8 +104,13 @@ export default function DetailPost(props) {
     onUnSaveListPost,
   } = props;
   const newContent = post.Content ? post.Content.split('\n') : [];
+  const screen = {
+    isMobile: currentScreen().isMobile,
+    isLaptop: currentScreen().isLaptop,
+    isDesktop: currentScreen().isDesktop,
+  };
   const classes = useStyles({
-    ...responsiveObj,
+    ...screen,
   });
 
   return (
@@ -108,7 +118,7 @@ export default function DetailPost(props) {
       <Grid
         container
         className={
-          responsiveObj.is_minWidth_2000px
+          screen.isDesktop
             ? `${classes.grid__wrap} ${classes.large__grid_wrap}`
             : `${classes.grid__wrap} ${classes.small_grid_wrap}`
         }
@@ -165,7 +175,7 @@ export default function DetailPost(props) {
                   <img
                     src={showingPost.ImageUrl}
                     alt="Ảnh"
-                    style={responsiveObj.is_maxWidth_500px ? { width: '70%' } : { width: '30%' }}
+                    style={screen.isMobile ? { width: '70%' } : { width: '30%' }}
                   />
                 </div>
               </>

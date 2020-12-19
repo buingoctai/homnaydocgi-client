@@ -3,18 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    height: (props) => (props.is_maxWidth_500px ? '10px' : '80px'),
+    height: (props) => (props.isMobile ? '10px' : '80px'),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
   obb: {
-    width: (props) => (props.is_maxWidth_500px ? '5px' : '15px'),
-    height: (props) => (props.is_maxWidth_500px ? '5px' : '15px'),
+    width: (props) => (props.isMobile ? '5px' : '15px'),
+    height: (props) => (props.isMobile ? '5px' : '15px'),
     backgroundColor: 'red',
     position: 'relative',
     animation: '$obbAmi 0.5s linear 0s infinite alternate',
-    margin: (props) => (props.is_maxWidth_500px ? '0px 2px' : '0px 4px'),
+    margin: (props) => (props.isMobile ? '0px 2px' : '0px 4px'),
     borderRadius: '50%',
   },
   '@keyframes obbAmi': {
@@ -23,12 +23,12 @@ const useStyles = makeStyles((theme) => ({
     '100%': { backgroundColor: 'red', top: '0px' },
   },
   even: {
-    width: (props) => (props.is_maxWidth_500px ? '5px' : '15px'),
-    height: (props) => (props.is_maxWidth_500px ? '5px' : '15px'),
+    width: (props) => (props.isMobile ? '5px' : '15px'),
+    height: (props) => (props.isMobile ? '5px' : '15px'),
     backgroundColor: 'red',
     position: 'relative',
     animation: '$evenAmi 0.5s linear 0s infinite alternate',
-    margin: (props) => (props.is_maxWidth_500px ? '0px 2px' : '0px 4px'),
+    margin: (props) => (props.isMobile ? '0px 2px' : '0px 4px'),
     borderRadius: '50%',
   },
   '@keyframes evenAmi': {
