@@ -39,13 +39,13 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '0px',
     paddingBottom: '20px',
   },
-  large__grid_wrap: {
+  large__grid__wrap: {
     width: '50%',
   },
-  small_grid_wrap: {
+  small__grid__wrap: {
     width: (props) => (props.isMobile ? '130%' : '60%'),
     // width:'130%',
-    padding: (props) => (props.isMobile ? '60px 72px 10px 72px' : 'none'),
+    padding: (props) => (props.isMobile ? '60px 0px 0px 0px' : 'none'),
   },
   item__grid__wrap: {
     height: '100%',
@@ -119,8 +119,8 @@ export default function DetailPost(props) {
         container
         className={
           screen.isDesktop
-            ? `${classes.grid__wrap} ${classes.large__grid_wrap}`
-            : `${classes.grid__wrap} ${classes.small_grid_wrap}`
+            ? `${classes.grid__wrap} ${classes.large__grid__wrap}`
+            : `${classes.grid__wrap} ${classes.small__grid__wrap}`
         }
         onBlur={() => {}}
       >

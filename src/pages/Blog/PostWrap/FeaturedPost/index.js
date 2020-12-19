@@ -12,7 +12,7 @@ import Hidden from '@material-ui/core/Hidden';
 import moment from 'moment';
 
 import LoadingEntireApp from 'srcRoot/components/LoadingEntireApp';
-import { translatePostGroupTitle } from 'srcRoot/utils/utils';
+import { translatePostGroupTitle, currentScreen } from 'srcRoot/utils/utils';
 
 const useStyles = makeStyles({
   transition: 'transform 0.25s',
@@ -62,6 +62,8 @@ const useStyles = makeStyles({
 
 export default function FeaturedPost(props) {
   const classes = useStyles();
+  console.log('  ', currentScreen());
+  const screen = currentScreen();
   const { post, widthCol, isLoadingPage, onHandleOpenDetailContainer } = props;
 
   return post.data
@@ -92,13 +94,15 @@ export default function FeaturedPost(props) {
                       </Typography>
                     </CardContent>
                   </div>
-                  <Hidden xsDown>
-                    <CardMedia
-                      className={classes.card__media}
-                      image={post.ImageUrl}
-                      title={post.imageTitle}
-                    />
-                  </Hidden>
+                  {!screen.isMobile && (
+                    <Hidden xsDown>
+                      <CardMedia
+                        className={classes.card__media}
+                        image={post.ImageUrl}
+                        title={post.imageTitle}
+                      />
+                    </Hidden>
+                  )}
                 </Card>
               </CardActionArea>
             </a>
