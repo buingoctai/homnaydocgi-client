@@ -43,7 +43,8 @@ heroku logs --tail --app homnaydocgi-client
 - Implement footer
 - Add button scroll to head page
 - Responsive for entire page
-
+- Research PWA (display posts as fb app)
+- Voice assistant for audio page
 ## Improvement:
 
 - Live search
