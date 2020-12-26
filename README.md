@@ -26,16 +26,6 @@ yarn dev
 yarn format
 ```
 
-## Heorku:
-
-- Logs:
-
-```
-heroku logs --tail --app homnaydocgi-client
-```
-
-- Restart app: heroku restart -a homnaydocgi-client
-
 ## Features:
 
 - Apply react vitrualized
@@ -45,6 +35,7 @@ heroku logs --tail --app homnaydocgi-client
 - Responsive for entire page
 - Research PWA (display posts as fb app)
 - Voice assistant for audio page
+
 ## Improvement:
 
 - Live search
