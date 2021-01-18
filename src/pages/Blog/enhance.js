@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import { compose, withHandlers, withState, lifecycle } from 'recompose';
 import { DEFAULT_TOPIC } from 'srcRoot/utils/constants';
-import { userDataCRUD } from 'srcRoot/utils/utils';
+import { userDataCRUD ,currentScreen} from 'srcRoot/utils/utils';
 import OpenDetaiPostHandler from 'srcRoot/components/HOC/OpenDetaiPostHandler';
 import UserDataHandler from 'srcRoot/components/HOC/UserDataHandler';
+
 import * as serviceWorker from 'srcRoot/serviceWorker';
 import {
   asyncGetMainPosts,
@@ -178,6 +179,11 @@ export default compose(
   }),
   lifecycle({
     componentDidMount() {
+      // redirect mobile app
+      // if(currentScreen().isMobile){
+      //   window.location.href = "https://homnaydocgi-pwa-2rat3.ondigitalocean.app";
+      // }
+
       const {
         currentPageIndex,
         getMainPostsDispatch,
@@ -239,6 +245,7 @@ export default compose(
         .catch(() => {
           setIsLoadingPage(false);
         });
+      
     },
     componentWillUnmount() {
       window.removeEventListener('scroll', this.props.onScroll);

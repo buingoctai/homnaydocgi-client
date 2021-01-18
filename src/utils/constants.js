@@ -106,7 +106,7 @@ const URL = [
     uRL: '/home',
   },
   {
-    subMenu: 'Nghe Báo',
+    subMenu: 'Rèn Luyện Niềm Tin',
     uRL: '/home/bots',
   },
 ];

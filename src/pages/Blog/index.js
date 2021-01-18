@@ -125,8 +125,14 @@ const Blog = (props) => {
     ],
   };
 
+  const redirectMobileApp=({isMobile})=>{
+    if(isMobile){
+      window.location.href = "https://homnaydocgi-pwa-2rat3.ondigitalocean.app";
+    }
+  }
   const classes = useStyles({ ...screen });
   // const isLoadingPage = true;
+  redirectMobileApp({...screen});
   return (
     <React.Fragment>
       <CssBaseline />

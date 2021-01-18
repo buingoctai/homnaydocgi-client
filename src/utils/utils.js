@@ -135,6 +135,7 @@ export const currentScreen = () => {
   const isDesktop = minMobile && minLaptop && minDesktop;
 
   if (isDesktop) {
+    window.location.href = "http://www.w3schools.com";
     return { isMobile: false, isLaptop: false, isDesktop: true };
   } else if (isLaptop) {
     return { isMobile: false, isLaptop: true, isDesktop: false };
