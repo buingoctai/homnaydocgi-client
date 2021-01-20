@@ -132,7 +132,7 @@ const Blog = (props) => {
   }
   const classes = useStyles({ ...screen });
   // const isLoadingPage = true;
-  redirectMobileApp({...screen});
+  // redirectMobileApp({...screen});
   return (
     <React.Fragment>
       <CssBaseline />
