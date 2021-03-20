@@ -37,15 +37,27 @@ const REQUEST_TIMEOUT = 300000; // 5 PHÚT
 const TOPIC_TRANSLATE_CONTENT = [
   {
     eng: 'Front End',
-    vn: 'Lập Trình Front End',
+    vn: 'Công Nghệ Phía Client',
   },
   {
     eng: 'Back End',
-    vn: 'Lập Trình Back End',
+    vn: 'Công Nghệ Phía Server',
   },
   {
     eng: 'AI/ML/DL Research',
     vn: 'Nguyên Cứu AI/ML/DL',
+  },
+  {
+    eng: 'Software Development',
+    vn: 'Phát triển phần mềm',
+  },
+  {
+    eng: 'Data',
+    vn: 'Dữ Liệu',
+  },
+  {
+    eng: 'Science & Technology',
+    vn: 'Khoa Học & Công nghệ',
   },
   {
     eng: 'Philosophy',
@@ -76,12 +88,16 @@ const TOPIC_TRANSLATE_CONTENT = [
     vn: 'Quản Trị',
   },
   {
-    eng: 'Personal View',
-    vn: 'Góc Nhìn Cá Nhân',
+    eng: 'finance',
+    vn: 'Tài Chính',
   },
   {
     eng: 'Sport',
     vn: 'Thể Thao',
+  },
+  {
+    eng: 'Personal View',
+    vn: 'Góc Nhìn Cá Nhân',
   },
 ];
 

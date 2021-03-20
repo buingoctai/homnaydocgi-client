@@ -158,14 +158,23 @@ const AddingForm = (props) => {
             <option value="AI/ML/DL Research">
               {translatePostGroupTitle('AI/ML/DL Research')}
             </option>
+            <option value="Software Development">
+              {translatePostGroupTitle('Software Development')}
+            </option>
+            <option value="Science - Technology">
+              {translatePostGroupTitle('Science & Technology')}
+            </option>
+            <option value="Data">{translatePostGroupTitle('Data')}</option>
+            <option value="Marketing">{translatePostGroupTitle('Marketing')}</option>
+            <option value="Sales">{translatePostGroupTitle('Sales')}</option>
+
+            <option value="LeaderShip">{translatePostGroupTitle('LeaderShip')}</option>
+            <option value="Administration">{translatePostGroupTitle('Administration')}</option>
+            <option value="finance">{translatePostGroupTitle('finance')}</option>
+            <option value="Personal View">{translatePostGroupTitle('Personal View')}</option>
             <option value="Philosophy">{translatePostGroupTitle('Philosophy')}</option>
             <option value="Psychology">{translatePostGroupTitle('Psychology')}</option>
             <option value="Sociology">{translatePostGroupTitle('Sociology')}</option>
-            <option value="Sales">{translatePostGroupTitle('Sales')}</option>
-            <option value="Marketing">{translatePostGroupTitle('Marketing')}</option>
-            <option value="LeaderShip">{translatePostGroupTitle('LeaderShip')}</option>
-            <option value="Administration">{translatePostGroupTitle('Administration')}</option>
-            <option value="Personal View">{translatePostGroupTitle('Personal View')}</option>
             <option value="Sport">{translatePostGroupTitle('Sport')}</option>
           </Select>
           <TextField

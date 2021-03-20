@@ -40,6 +40,7 @@ export default function InputPopup({ open, title, createdText, handleClose, hand
         onClose={onClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        maxWidth={'lg'}
       >
         <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
         <DialogContent>

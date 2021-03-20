@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { compose, withHandlers, withState, lifecycle } from 'recompose';
 import { DEFAULT_TOPIC } from 'srcRoot/utils/constants';
-import { userDataCRUD ,currentScreen} from 'srcRoot/utils/utils';
+import { userDataCRUD, currentScreen } from 'srcRoot/utils/utils';
 import OpenDetaiPostHandler from 'srcRoot/components/HOC/OpenDetaiPostHandler';
 import UserDataHandler from 'srcRoot/components/HOC/UserDataHandler';
 
@@ -245,7 +245,6 @@ export default compose(
         .catch(() => {
           setIsLoadingPage(false);
         });
-      
     },
     componentWillUnmount() {
       window.removeEventListener('scroll', this.props.onScroll);

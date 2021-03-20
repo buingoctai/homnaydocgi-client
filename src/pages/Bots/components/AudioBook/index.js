@@ -157,6 +157,10 @@ const AudioBook = (props) => {
     }
   };
 
+  const onDragEnter = (props) => {
+    console.log('props', props.target);
+  };
+
   useEffect(() => {
     const player = document.getElementById('player');
 
@@ -216,7 +220,13 @@ const AudioBook = (props) => {
                       <CircularProgress size={30} />
                     </div>
                   ) : (
-                    <List component="div" disablePadding>
+                    <List
+                      component="div"
+                      disablePadding
+                      className="audio-list"
+                      draggable="true"
+                      onDragOver={(event) => onDragEnter(event)}
+                    >
                       {currentBook.data.length > 0 &&
                         currentBook.data.map((item, index) => (
                           <ListItem className={classes.nested}>
