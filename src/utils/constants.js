@@ -122,7 +122,7 @@ const URL = [
     uRL: '/home',
   },
   {
-    subMenu: 'Rèn Luyện Niềm Tin',
+    subMenu: 'Podcasts',
     uRL: '/home/bots',
   },
 ];

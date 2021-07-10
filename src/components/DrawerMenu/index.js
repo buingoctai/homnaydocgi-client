@@ -75,7 +75,7 @@ const DrawerMenu = (props) => {
     switch (text) {
       case 'Nội dung':
         return <SubjectIcon color="primary" />;
-      case 'Rèn Luyện Niềm Tin':
+      case 'Podcasts':
         return <RadioIcon color="primary" />;
       default:
         return null;
@@ -90,7 +90,7 @@ const DrawerMenu = (props) => {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {['Nội dung', 'Rèn Luyện Niềm Tin'].map((text, index) => (
+        {['Nội dung', 'Podcasts'].map((text, index) => (
           <ListItem button key={text}>
             <Link to={{ pathname: translateUrl(text) }} style={{ textDecoration: 'none' }}>
               <ListItemIcon>{determineIcon(text)}</ListItemIcon>
