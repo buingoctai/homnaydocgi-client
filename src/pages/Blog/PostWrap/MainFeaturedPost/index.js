@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import LoadingEntireApp from 'srcRoot/components/LoadingEntireApp';
+import Logo512 from  './logo512.png';
+
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -28,13 +30,13 @@ const useStyles = makeStyles(() => ({
   },
   title__wrap: {
     position: 'absolute',
-    bottom: '8px',
-    left: '16px',
-    width: '50%',
+    bottom: '40px',
+    left: '7px',
   },
   title: {
-    fontSize: '15px',
+    fontSize: '11px',
     fontWeight: 'bold',
+    color: '#ed4613',
   },
 }));
 
@@ -53,7 +55,7 @@ export default function MainFeaturedPost(props) {
         ) : (
           <>
             <div className={classes.image__wrap}>
-              <img src={post.ImageUrl} width="200px" height="170px" alt="" />
+              <img src={Logo512} width="120px" height="120px" alt="" />
             </div>
             <div className={classes.title__wrap}>
               <Typography

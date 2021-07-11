@@ -10,6 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
 import moment from 'moment';
+import Logo512 from  './logo512.png';
 
 import LoadingEntireApp from 'srcRoot/components/LoadingEntireApp';
 import { translatePostGroupTitle, currentScreen } from 'srcRoot/utils/utils';
@@ -40,7 +41,7 @@ const useStyles = makeStyles({
     },
   },
   card__media: {
-    width: 160,
+    width: 100,
   },
   topic__name_wrap: {
     fontSize: '12px',
@@ -90,7 +91,7 @@ export default function FeaturedPost(props) {
                         {post && moment(post.SubmitDate).format('DD-MM-YYYY')}
                       </Typography>
                       <Typography variant="subtitle2" paragraph className={classes.brief}>
-                        {post && `${post.Brief}...`}
+                        {post && `${post.Brief.substring(0, 50)}...`}
                       </Typography>
                     </CardContent>
                   </div>
@@ -98,7 +99,7 @@ export default function FeaturedPost(props) {
                     <Hidden xsDown>
                       <CardMedia
                         className={classes.card__media}
-                        image={post.ImageUrl}
+                        image={Logo512}
                         title={post.imageTitle}
                       />
                     </Hidden>
